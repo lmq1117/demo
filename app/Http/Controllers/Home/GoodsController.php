@@ -49,10 +49,10 @@ class GoodsController extends ApiTmpController
             ->orderBy('goods_id', 'desc')
             ->get();
         foreach ($allOnSaleGoods as $key => &$value){
+            $value->toArray();
             if(in_array($value->id,$exclude_goods_ids)){
                 unset($allOnSaleGoods[$key]);
             }
-            $value->toArray();
         }
 
         $this->returnMsg['data']['normal_goods'] = $allOnSaleGoods->toArray();
