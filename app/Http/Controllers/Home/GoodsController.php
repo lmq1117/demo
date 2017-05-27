@@ -31,6 +31,9 @@ class GoodsController extends ApiTmpController
             ->take(3)
             ->orderBy('goods_id', 'desc')
             ->get();
+        foreach($promotionGoods as &$val){
+            $val->toArray();
+        }
         $this->returnMsg['data']['promotion'] = $promotionGoods->toArray();
 
         //要排除的商品id
@@ -49,7 +52,9 @@ class GoodsController extends ApiTmpController
             if(in_array($value->id,$exclude_goods_ids)){
                 unset($allOnSaleGoods[$key]);
             }
+            $value->toArray();
         }
+
         $this->returnMsg['data']['normal_goods'] = $allOnSaleGoods->toArray();
 
 
