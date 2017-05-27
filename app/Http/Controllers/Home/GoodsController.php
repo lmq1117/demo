@@ -32,6 +32,7 @@ class GoodsController extends ApiTmpController
             ->orderBy('goods_id', 'desc')
             ->get();
         foreach($promotionGoods as &$val){
+            $val->goods_url = "html/goodsInfo.html";
             $val->toArray();
         }
         $this->returnMsg['data']['promotion'] = $promotionGoods->toArray();
@@ -49,6 +50,7 @@ class GoodsController extends ApiTmpController
             ->orderBy('goods_id', 'desc')
             ->get();
         foreach ($allOnSaleGoods as &$value){
+            $value->goods_url = "html/goodsInfo.html";
             $value->toArray();
             if(in_array($value->id,$exclude_goods_ids)){
                 unset($value);
