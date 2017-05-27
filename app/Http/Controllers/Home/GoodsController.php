@@ -31,7 +31,7 @@ class GoodsController extends ApiTmpController
             ->take(3)
             ->orderBy('goods_id', 'desc')
             ->get();
-        $this->returnMsg['data']['promotion'] = $promotionGoods;
+        $this->returnMsg['data']['promotion'] = $promotionGoods->toArray();
 
         //要排除的商品id
         $exclude_goods_ids = [];
@@ -50,7 +50,7 @@ class GoodsController extends ApiTmpController
                 unset($allOnSaleGoods[$key]);
             }
         }
-        $this->returnMsg['normal_goods'] = $allOnSaleGoods;
+        $this->returnMsg['data']['normal_goods'] = $allOnSaleGoods->toArray();
 
 
         $this->setReturnMsg('获取首页商品成功');
