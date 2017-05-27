@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'/v1','middleware'=>['api']],function (){
     Route::post('/user/login','Api\LoginController@Login');
 });
+
+//Route::post('/goods/one','Home\GoodsController@getOne');
+Route::post('/goods/home_goods','Home\GoodsController@getShopHomeGoods');
+Route::post('/goods/detail','Home\GoodsController@getGoodsDetail');

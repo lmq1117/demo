@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/goods/test','Home\GoodsController@test');
+#Route::get('/goods/one','Home\GoodsController@getOne');
