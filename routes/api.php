@@ -24,8 +24,8 @@ Route::group(['prefix'=>'/v1','middleware'=>['api']],function (){
 //Route::post('/goods/one','Home\GoodsController@getOne');
 Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods');
 Route::post('/goods/goodsinfo','Home\GoodsController@getGoodsDetail');
-Route::post('/user/notice','Home\GoodsController@getGoodsDetail');//关注
-Route::post('/user/collection','Home\GoodsController@getGoodsDetail');//收藏
+Route::post('/goods/notice','Home\GoodsController@getGoodsDetail');//关注
+Route::post('/goods/collection','Home\GoodsController@getGoodsDetail');//收藏
 Route::post('/user/userinfo','Home\GoodsController@getGoodsDetail');
 Route::post('/order/all','Home\GoodsController@getGoodsDetail');//全部订单
 Route::post('/order/bf_pay','Home\GoodsController@getGoodsDetail');//待付款

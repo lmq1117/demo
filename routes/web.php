@@ -1,18 +1,29 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
-Route::get('/goods/test','Home\GoodsController@test');
-#Route::get('/goods/one','Home\GoodsController@getOne');
+
+Route::group(['prefix'=>'/v1','middleware'=>['api']],function (){
+    Route::post('/user/login','Api\LoginController@Login');
+});
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test','Home\GoodsController@test');
+
+Route::get('/stest','Home\GoodsController@sessionTest');

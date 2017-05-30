@@ -4,13 +4,23 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Home\ApiTmpController;
-use App\Entity\Home\{Goods,GoodsNotice,GoodsCollection};
+#use App\Entity\Home\{Goods,GoodsNotice,GoodsCollection};
+use App\Entity\Home\Goods;
+use App\Entity\Home\GoodsNotice;
+use App\Entity\Home\GoodsCollection;
+use Illuminate\Support\Facades\Auth;
 
 class GoodsController extends ApiTmpController
 {
     //
     public function test(){
         return 'goods_test----'.date('Y-m-d H:i:s',time());
+    }
+
+    public function sessionTest(Request $request){
+        //return $request->session()->all();
+        $user = Auth::user();
+        return $user;
     }
 
 
@@ -70,12 +80,16 @@ class GoodsController extends ApiTmpController
         $goods = Goods::find($gid);//商品基础信息
 
         //商品收藏数量
+        $goods_collection = new GoodsCollection();
+        $goods['collection_num'] = $goods_collection->countUser($gid);
 
         //商品关注数量
+        $goods_notice = new GoodsNotice();
+        $goods['notice_num'] = $goods_notice->countUser($gid);
 
-        $this->returnMsg['detail'] = $goods;
+        $this->returnMsg['data'] = $goods;
+        $this->setReturnMsg('获取商品详情成功！');
+        return $this->returnMsg;
 
-
-        return $goods;
     }
 }
