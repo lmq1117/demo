@@ -9,6 +9,7 @@ use App\Entity\Home\Goods;
 use App\Entity\Home\GoodsNotice;
 use App\Entity\Home\GoodsCollection;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class GoodsController extends ApiTmpController
 {
@@ -20,14 +21,14 @@ class GoodsController extends ApiTmpController
     public function sessionTest(Request $request){
         //return $request->session()->all();
         $user = Auth::user();
-        return $user;
+        return $user->id;
     }
 
 
     public function getOne(){
         $good = Goods::find(1);
         $this->returnMsg['data'] = $good;
-        $this->setReturnMsg();
+        $this->setReturnMsg(0);
 
         return $this->returnMsg;
     }
@@ -68,7 +69,7 @@ class GoodsController extends ApiTmpController
         $this->returnMsg['data']['normal_goods'] = $allOnSaleGoods->toArray();
 
 
-        $this->setReturnMsg('获取首页商品成功');
+        $this->setReturnMsg(0);
         return $this->returnMsg;
     }
 
@@ -88,8 +89,34 @@ class GoodsController extends ApiTmpController
         $goods['notice_num'] = $goods_notice->countUser($gid);
 
         $this->returnMsg['data'] = $goods;
-        $this->setReturnMsg('获取商品详情成功！');
+        $this->setReturnMsg(0);
         return $this->returnMsg;
 
+    }
+
+    //获取当前用户关注的所有商品信息（用于商品列表）
+    public function goodsNoticeList(Request $request){
+        $req_data = $request->all();
+
+        $user = User::findForId($req_data['username']);
+        $notice = GoodsNotice::where('u_id',$user->id)->where('is_cancel',0)->get();
+        //return $notice;
+        $this->returnMsg['data']['notice_list'] = $notice;
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
+
+    }
+
+
+    //获取当前用户收藏的所有商品信息（用于商品列表）
+    public function goodsCollectionList(Request $request){
+        $req_data = $request->all();
+
+        $user = User::findForId($req_data['username']);
+        $collection = GoodsCollection::where('u_id',$user->id)->where('is_cancel',0)->get();
+
+        $this->returnMsg['data']['collection_list'] = $collection;
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
     }
 }

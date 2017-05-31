@@ -9,9 +9,14 @@ class ApiTmpController extends Controller
 {
     //
     protected $returnMsg;
+    protected $error_no = [
+        0 => 'success',
+        1 => '收藏失败！',
+        2 => '关注成功！',
+    ];
 
-    protected function setReturnMsg($msg="",$code=0){
+    protected function setReturnMsg($code=0){
         $this->returnMsg['code'] = $code;
-        $this->returnMsg['message'] = $msg;
+        $this->returnMsg['message'] = $this->error_no[$code];
     }
 }

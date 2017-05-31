@@ -31,4 +31,9 @@ class User extends Authenticatable
     public function findForPassport($username){
         return $this->where('phone',$username)->first();
     }
+
+
+    public static function findForId($username){
+        return self::where('name',$username)->first();
+    }
 }

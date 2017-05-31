@@ -27,3 +27,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test','Home\GoodsController@test');
 
 Route::get('/stest','Home\GoodsController@sessionTest');
+Route::get('/cadd','Home\GoodsCollectionController@goodsCollectionAdd');
+Route::get('/nlist','Home\GoodsController@goodsNoticeList');
