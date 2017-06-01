@@ -25,7 +25,9 @@ class Wechat{
     }
 
     public function getWxUserInfo($openid){
-        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->getAccessToken()."&openid=".$openid."&lang=zh_CN";
+        $accessTokenObj = $this->getAccessToken();
+        $accessToken = $accessTokenObj['access_token'];
+        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$accessToken."&openid=".$openid."&lang=zh_CN";
         return $this->curlGet($url);
     }
 
