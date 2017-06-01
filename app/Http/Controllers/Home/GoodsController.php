@@ -50,7 +50,7 @@ class GoodsController extends ApiTmpController
         //echo '</pre>';
 
         //return $user;
-        return session('userInfo');
+        return session('userInfo','aaaaa');
 
     }
 
