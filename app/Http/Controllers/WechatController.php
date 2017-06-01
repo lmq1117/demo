@@ -31,12 +31,13 @@ class WechatController extends Controller
 
                     break;
                 case 'VIEW':
-                    if($postObj->MenuId == '412801741'){
+                    if($postObj->EventKey == 'http://shinehua.duapp.com/'){
                         //进入首页了
                         //根据openid去微信服务器拿资料
                         //$userInfo = getUserInfo($postObj->FromUserName);
                         //file_put_contents('/tmp/wco_user_info.log',date('Y-m-d H:i:s',time()).'----'.json_encode($userInfo)."\r\n",FILE_APPEND);
                         //写session
+                        Log::info('----Wechat request3----'.$postStr);
 
                     }
                     break;
