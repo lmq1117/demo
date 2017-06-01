@@ -33,7 +33,7 @@ class GoodsController extends ApiTmpController
         //$res = Cache::put('key',$arr,10);
         //var_dump($res);
 
-        cache(['key001'=>$arr],1);
+        //cache(['key001'=>$arr],1);
         $res = cache('key001');
         var_dump(date('Y-m-d H:i:s',time()));
         var_dump($res);
