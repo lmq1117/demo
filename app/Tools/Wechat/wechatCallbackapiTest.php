@@ -9,8 +9,8 @@ namespace App\Tools\Wechat;
 
 //define your token
 //define("TOKEN", "wco");
-$wechatObj = new wechatCallbackapiTest();
-$wechatObj->valid();
+//$wechatObj = new wechatCallbackapiTest();
+//$wechatObj->valid();
 
 class wechatCallbackapiTest
 {
