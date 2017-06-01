@@ -88,6 +88,9 @@ class WechatController extends CommonController
                         //写session
                         Log::info('----Wechat request3----'.$postStr);
                         $user = User::where('wx_openid',$postObj->FromUserName)->first();
+                        $user = $user->toArray();
+                        session(['userInfo'=>$user]);
+
 
 
                     }
