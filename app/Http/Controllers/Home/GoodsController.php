@@ -18,7 +18,7 @@ class GoodsController extends ApiTmpController
     //
     public function test(){
         //return 'goods_test----'.date('Y-m-d H:i:s',time());
-        $user = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first();
+        $user = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first()->toArray();
         //var_dump($openid);
         //$arr = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
         //$arr = [
