@@ -52,15 +52,17 @@ class GoodsController extends ApiTmpController
         //return $user;
         //return session('userInfo','aaaaa');
         //$request->session()->put('userInfo','lmq');
+        session(['userInfo'=>'lmq1117']);
         $data = $request->session()->all();
-        //return $data;
-        dd($data);
+        return $data;
     }
 
     public function sessionTest(Request $request){
         //return $request->session()->all();
-        $user = Auth::user();
-        return $user->id;
+        //$user = Auth::user();
+        //return $user->id;
+        $data = $request->session()->all();
+        return $data;
     }
 
 
