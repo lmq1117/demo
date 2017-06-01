@@ -51,7 +51,7 @@ class GoodsController extends ApiTmpController
 
         //return $user;
         //return session('userInfo','aaaaa');
-        $request->session()->put('userInfo','lmq');
+        //$request->session()->put('userInfo','lmq');
         $data = $request->session()->all();
         //return $data;
         dd($data);
