@@ -7,7 +7,7 @@ use App\Tools\Wechat\wechatCallbackapiTest;
 use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Tools\Wechat\Wechat;
-
+use Illuminate\Support\Facades\DB;
 class WechatController extends CommonController
 {
 
