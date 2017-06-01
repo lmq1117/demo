@@ -41,12 +41,31 @@ class WechatController extends CommonController
                         $wechatTools = new Wechat($this->config);
                         $userInfo = $wechatTools->getWxUserInfo($postObj->FromUserName);
                         //Cache::put('userInfo_'.$postObj->FromUserName,$userInfo,5);
-                        $cache_key = 'userInfo_'.$postObj->FromUserName;
-                        $cache_data[$cache_key] = $userInfo;
-                        cache($cache_data,2);//缓存2分钟
+                        //$cache_key = 'userInfo_'.$postObj->FromUserName;
+                        //$cache_data[$cache_key] = $userInfo;
+                        //cache($cache_data,2);//缓存2分钟
 
-                        $u = cache($cache_key);
-                        log::info('----cache write----'.json_encode($u));
+                        //$u = cache($cache_key);
+                        //log::info('----cache write----'.json_encode($u));
+
+                        //{
+                        //    "subscribe": 1,
+                        //    "openid": "outktv28lv2UjvPTeT1TvKRRx0tc",
+                        //    "nickname": "李明权",
+                        //    "sex": 1,
+                        //    "language": "zh_CN",
+                        //    "city": "深圳",
+                        //    "province": "广东",
+                        //    "country": "中国",
+                        //    "headimgurl": "http://wx.qlogo.cn/mmopen/PiajxSqBRaEJQdJZQiaBZl20ghgE9XLrPR7PTuj154CpsgcTjpg9ETPnFoY5Q98bFLnuk000PuVc0IJqPAbWsdZw/0",
+                        //    "subscribe_time": 1496312239,
+                        //    "remark": "",
+                        //    "groupid": 0,
+                        //    "tagid_list": []
+                        //}
+                        $user = new User;
+                        $user->name = nickname;
+
 
 
 
