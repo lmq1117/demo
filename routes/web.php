@@ -29,3 +29,6 @@ Route::get('/test','Home\GoodsController@test');
 Route::get('/stest','Home\GoodsController@sessionTest');
 Route::get('/cadd','Home\GoodsCollectionController@goodsCollectionAdd');
 Route::get('/nlist','Home\GoodsController@goodsNoticeList');
+
+
+Route::any('/wechat','WechatController@verifyUrl');

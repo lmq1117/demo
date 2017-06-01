@@ -88,7 +88,7 @@ class GoodsController extends ApiTmpController
         $goods_notice = new GoodsNotice();
         $goods['notice_num'] = $goods_notice->countUser($gid);
 
-        $this->returnMsg['data'] = $goods;
+        $this->returnMsg['data']['goods_info'] = $goods;
         $this->setReturnMsg(0);
         return $this->returnMsg;
 
