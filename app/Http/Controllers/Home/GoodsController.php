@@ -10,12 +10,18 @@ use App\Entity\Home\GoodsNotice;
 use App\Entity\Home\GoodsCollection;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class GoodsController extends ApiTmpController
 {
     //
     public function test(){
-        return 'goods_test----'.date('Y-m-d H:i:s',time());
+        //return 'goods_test----'.date('Y-m-d H:i:s',time());
+        //$openid = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first();
+        //var_dump($openid);
+        $arr = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
+        var_dump($arr);
     }
 
     public function sessionTest(Request $request){
