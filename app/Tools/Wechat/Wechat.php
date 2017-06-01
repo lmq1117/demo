@@ -24,15 +24,29 @@ class Wechat{
         }
     }
 
+    //生成服务号菜单
+    public function createMenu(){
+        $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$this->getAccessToken();
+    }
+
+    //获取accessToken字串
     public function getWxUserInfo($openid){
-        $accessTokenObj = $this->getAccessToken();
-        $accessToken = $accessTokenObj['access_token'];
-        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$accessToken."&openid=".$openid."&lang=zh_CN";
+
+        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->getAccessToken()."&openid=".$openid."&lang=zh_CN";
         return $this->curlGet($url);
     }
 
-
     public function getAccessToken(){
+
+        if(!($accessToken = cache('accessToken'))){
+            $accessTokenObj = $this->getAccessTokenObj();
+            $accessToken = $accessTokenObj['access_token'];
+            cache(['accessToken'=>$accessToken],2);//accessToken缓存110分钟
+        }
+        return $accessToken;
+    }
+
+    protected function getAccessTokenObj(){
         //$appid = $this->appid;
         //$appSecret = $this->appSecret;
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appSecret;
@@ -45,14 +59,14 @@ class Wechat{
         //    return $res['access_token'];
         //}
 
-        if($accessToken = cache('accessToken')){
-            return $accessToken;
-        } else {
-            $accessToken = $this->curlGet($url);
+        //if($accessToken = cache('accessToken')){
+        //    return $accessToken;
+        //} else {
+        return $this->curlGet($url);
             //Cache::put('accessToken',$accessToken,110);//缓存时间 110分钟
-            cache(['accessToken'=>$accessToken],110);//缓存时间 110分钟
-            return $accessToken;
-        }
+        //    cache(['accessToken'=>$accessToken],110);//缓存时间 110分钟
+        //    return $accessToken;
+        //}
 
 
     }

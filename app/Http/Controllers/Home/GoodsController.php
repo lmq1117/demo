@@ -34,7 +34,7 @@ class GoodsController extends ApiTmpController
         //var_dump($res);
 
         //cache(['key001'=>$arr],1);
-        $res = cache('key001');
+        $res = cache('accessToken');
         var_dump(date('Y-m-d H:i:s',time()));
         var_dump($res);
     }
