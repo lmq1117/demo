@@ -43,11 +43,12 @@ class Wechat{
         //    return $res['access_token'];
         //}
 
-        if($accessToken = Cache::get('accessToken')){
+        if($accessToken = cache('accessToken')){
             return $accessToken;
         } else {
             $accessToken = $this->curlGet($url);
-            Cache::put('accessToken',$accessToken,110);//缓存时间 110分钟
+            //Cache::put('accessToken',$accessToken,110);//缓存时间 110分钟
+            cache(['accessToken'=>$accessToken],110);//缓存时间 110分钟
             return $accessToken;
         }
 

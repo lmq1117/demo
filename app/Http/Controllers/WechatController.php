@@ -46,6 +46,7 @@ class WechatController extends CommonController
                         cache($cache_data,2);//缓存2分钟
 
                         $u = cache($cache_key);
+                        log::info('----cache write----'.json_encode($u));
 
 
 
@@ -55,9 +56,10 @@ class WechatController extends CommonController
                     break;
                 //取消关注事件
                 case 'unsubscribe':
+                    echo 'aaaa';
                     break;
                 case 'CLICK':
-
+                    echo 'aaaa';
                     break;
                 case 'VIEW':
                     if($postObj->EventKey == 'http://shinehua.duapp.com/'){
