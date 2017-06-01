@@ -20,8 +20,18 @@ class GoodsController extends ApiTmpController
         //return 'goods_test----'.date('Y-m-d H:i:s',time());
         //$openid = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first();
         //var_dump($openid);
-        $arr = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
-        var_dump($arr);
+        //$arr = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
+        $arr = [
+            'name'=>'mary',
+            'age'=>18
+        ];
+
+        //$arr_cache = Cache::put('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc',$arr,1);
+        //$arr_cache = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
+        //var_dump($arr_cache);
+
+        $res = Cache::put('key',$arr,10);
+        var_dump($res);
     }
 
     public function sessionTest(Request $request){
