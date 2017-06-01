@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Cache;
 class GoodsController extends ApiTmpController
 {
     //
-    public function test(){
+    public function test(Request $request){
         //return 'goods_test----'.date('Y-m-d H:i:s',time());
         //$user = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first();
         //$user->toArray();
@@ -50,8 +50,10 @@ class GoodsController extends ApiTmpController
         //echo '</pre>';
 
         //return $user;
-        return session('userInfo','aaaaa');
-
+        //return session('userInfo','aaaaa');
+        $data = $request->session()->all();
+        //return $data;
+        dd($data);
     }
 
     public function sessionTest(Request $request){
