@@ -44,7 +44,7 @@ class GoodsController extends ApiTmpController
 
         $user = User::find(1);
         //return $user->toArray();
-        $user->toArray();
+        $user = $user->toArray();
         echo '<pre>';
         print_r($user);
         echo '</pre>';
