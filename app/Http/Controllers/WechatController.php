@@ -7,7 +7,6 @@ use App\Tools\Wechat\wechatCallbackapiTest;
 use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Tools\Wechat\Wechat;
-use Illuminate\Support\Facades\Cache;
 
 class WechatController extends CommonController
 {
@@ -41,7 +40,14 @@ class WechatController extends CommonController
                         //获取用户信息
                         $wechatTools = new Wechat($this->config);
                         $userInfo = $wechatTools->getWxUserInfo($postObj->FromUserName);
-                        Cache::put('userInfo_'.$postObj->FromUserName,$userInfo,5);
+                        //Cache::put('userInfo_'.$postObj->FromUserName,$userInfo,5);
+                        $cache_key = 'userInfo_'.$postObj->FromUserName;
+                        $cache_data[$cache_key] = $userInfo;
+                        cache($cache_data,2);//缓存2分钟
+
+                        $u = cache($cache_key);
+
+
 
                     }
 

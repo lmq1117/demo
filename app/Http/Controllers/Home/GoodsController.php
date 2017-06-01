@@ -98,7 +98,7 @@ class GoodsController extends ApiTmpController
     //商品id要在post里
     public function getGoodsDetail(Request $request){
         $getData = $request->all();
-        $gid = $getData['gid'];
+        $gid = $getData['g_id'];
         $goods = Goods::find($gid);//商品基础信息
 
         //商品收藏数量
