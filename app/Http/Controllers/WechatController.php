@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tools\Wechat\wechatCallbackapiTest;
+use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
 {
 
     public function index(Request $request){
+        $postStr = Request::getContent();
+        Log::info('----Wechat request----'.$postStr);
 
     }
 

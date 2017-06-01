@@ -30,5 +30,6 @@ Route::get('/stest','Home\GoodsController@sessionTest');
 Route::get('/cadd','Home\GoodsCollectionController@goodsCollectionAdd');
 Route::get('/nlist','Home\GoodsController@goodsNoticeList');
 
-
-Route::any('/wechat','WechatController@verifyUrl');
+//验证微信URL时才开，不验证不开
+//Route::any('/wechat','WechatController@verifyUrl');
+Route::any('/wechat','WechatController@index');
