@@ -64,10 +64,9 @@ class WechatController extends CommonController
                         //    "tagid_list": []
                         //}
                         $user = new User;
-                        $user->name = nickname;
-
-
-
+                        $user->name = $userInfo['nickname'];
+                        $user->wx_openid = $userInfo['openid'];
+                        $user->save();
 
                     }
 
