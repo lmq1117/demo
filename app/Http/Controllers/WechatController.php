@@ -11,7 +11,8 @@ class WechatController extends Controller
 
     public function index(Request $request){
         //$postStr = Request::getContent();
-        $postStr = $request->all();
+        //$postStr = $request->all();
+        $postStr = file_get_contents("php://input");
         Log::info('----Wechat request----'.json_encode($postStr));
 
     }
