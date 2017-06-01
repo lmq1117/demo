@@ -39,7 +39,7 @@ class wechatCallbackapiTest
         //valid signature , option
         if($this->checkSignature()){
             //echo $this->echoSt;
-            return $this->echoSt;
+            return $this->echoStr;
             //exit;
         }
     }
