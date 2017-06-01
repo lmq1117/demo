@@ -13,6 +13,7 @@ class Wechat{
     private $token;//url验证token
     private $accessToken;
     private $key;//加密字符串
+
     public function __construct($wechat_config)
     {
         $this->config($wechat_config);
@@ -25,50 +26,32 @@ class Wechat{
     }
 
     //生成服务号菜单
-    public function createMenu(){
+    public function createWxMenu($menu){
         $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$this->getAccessToken();
+        return $this->curlPost($url,$menu);
     }
 
-    //获取accessToken字串
+
+    //获取微信用户的信息
     public function getWxUserInfo($openid){
 
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->getAccessToken()."&openid=".$openid."&lang=zh_CN";
         return $this->curlGet($url);
     }
 
+    //获取accessToken字串,并缓存
     public function getAccessToken(){
-
         if(!($accessToken = cache('accessToken'))){
             $accessTokenObj = $this->getAccessTokenObj();
             $accessToken = $accessTokenObj['access_token'];
-            cache(['accessToken'=>$accessToken],2);//accessToken缓存110分钟
+            cache(['accessToken'=>$accessToken],110);//accessToken缓存110分钟
         }
         return $accessToken;
     }
 
     protected function getAccessTokenObj(){
-        //$appid = $this->appid;
-        //$appSecret = $this->appSecret;
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appSecret;
-
-        //if(file_exists('./token.cache') && time() - filemtime('./token.cache') < 7100){
-        //    return file_get_contents('./token.cache');
-        //} else {
-        //    $res = curl_get($url);
-        //    file_put_contents('./token.cache',$res['access_token']);
-        //    return $res['access_token'];
-        //}
-
-        //if($accessToken = cache('accessToken')){
-        //    return $accessToken;
-        //} else {
         return $this->curlGet($url);
-            //Cache::put('accessToken',$accessToken,110);//缓存时间 110分钟
-        //    cache(['accessToken'=>$accessToken],110);//缓存时间 110分钟
-        //    return $accessToken;
-        //}
-
-
     }
 
     protected function curlPost($url,$data){

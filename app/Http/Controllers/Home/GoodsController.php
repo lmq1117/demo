@@ -18,13 +18,13 @@ class GoodsController extends ApiTmpController
     //
     public function test(){
         //return 'goods_test----'.date('Y-m-d H:i:s',time());
-        //$openid = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first();
+        $user = DB::table('users')->where('wx_openid','outktv28lv2UjvPTeT1TvKRRx0tc')->first();
         //var_dump($openid);
         //$arr = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
-        $arr = [
-            'name'=>'mary',
-            'age'=>18
-        ];
+        //$arr = [
+        //    'name'=>'mary',
+        //    'age'=>18
+        //];
 
         //$arr_cache = Cache::put('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc',$arr,1);
         //$arr_cache = Cache::get('userInfo_outktv28lv2UjvPTeT1TvKRRx0tc');
@@ -34,9 +34,13 @@ class GoodsController extends ApiTmpController
         //var_dump($res);
 
         //cache(['key001'=>$arr],1);
-        $res = cache('accessToken');
-        var_dump(date('Y-m-d H:i:s',time()));
-        var_dump($res);
+        //$res = cache('accessToken');
+        //$res = cache(['accessToken'=>1],1);
+        //var_dump(date('Y-m-d H:i:s',time()));
+        //var_dump($res);
+        var_dump($user);
+
+
     }
 
     public function sessionTest(Request $request){
