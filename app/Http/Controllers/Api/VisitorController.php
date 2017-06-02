@@ -44,10 +44,10 @@ class VisitorController extends ApiController
                     return $this->setReturnMsg(0);
                 }
             } catch (QueryException $ex) {
-                return $this->setReturnMsg(4);
+                return $this->setReturnMsg(5);
             }
         }
-        return $this->setReturnMsg(3);
+        return $this->setReturnMsg(5);
     }
 
 }
