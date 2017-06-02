@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Home\ApiTmpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
-class CommonController extends Controller
+class CommonController extends ApiTmpController
 {
     //
     protected $session;

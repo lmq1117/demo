@@ -53,7 +53,7 @@ class GoodsController extends ApiTmpController
         //return $user;
         //return session('userInfo','aaaaa');
         //$request->session()->put('userInfo','lmq');
-        Redis::set('name','mary jack');
+        //Redis::set('name','mary jack');
         session(['userInfo'=>'lmq1117']);
         $data = $request->session()->all();
         return $data;
