@@ -25,6 +25,9 @@ class WechatController extends CommonController
         $toUsername = $postObj->ToUserName;         //发给谁的 公众号的微信号
         $keyword = trim($postObj->Content);         //发的啥 文本消息有
 
+        session(['userInfo'=>$postObj->FromUserName]);
+
+
         if($postObj->MsgType == 'text'){
             //文本消息
         } elseif ($postObj->MsgType == 'event'){
@@ -95,7 +98,6 @@ class WechatController extends CommonController
                         //session(['userInfo'=>$postObj->FromUserName]);
                         //$request->session()->put('userInfo',$postObj->FromUserName);
 
-                        session(['userInfo'=>$postObj->FromUserName]);
 
 
                     }
