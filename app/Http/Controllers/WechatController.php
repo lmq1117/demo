@@ -40,6 +40,7 @@ class WechatController extends CommonController
                         //获取用户信息
                         $wechatTools = new Wechat($this->config);
                         $userInfo = $wechatTools->getWxUserInfo($postObj->FromUserName);
+                        log::info('----getWxUserInfo----'.json_encode($userInfo));
                         //Cache::put('userInfo_'.$postObj->FromUserName,$userInfo,5);
                         //$cache_key = 'userInfo_'.$postObj->FromUserName;
                         //$cache_data[$cache_key] = $userInfo;
