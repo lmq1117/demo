@@ -93,8 +93,9 @@ class WechatController extends CommonController
                         //$user = $user->toArray();
                         Log::info('----$user----'.json_encode($user));
                         //session(['userInfo'=>$postObj->FromUserName]);
-                        $request->session()->put('userInfo',$postObj->FromUserName);
+                        //$request->session()->put('userInfo',$postObj->FromUserName);
 
+                        session(['userInfo'=>$postObj->FromUserName]);
 
 
                     }
