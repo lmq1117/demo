@@ -60,7 +60,7 @@ class ApiController extends Controller
         return $this->failed($msg,$code);
     }
 
-    private function failed($msg,$code){
+    protected function failed($msg,$code){
         $res['code'] = $code;
         $res['msg'] = $msg;
         return json_encode($res);

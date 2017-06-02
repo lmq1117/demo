@@ -13,6 +13,8 @@ class ApiTmpController extends Controller
         0 => 'success',
         1 => '收藏失败！',
         2 => '关注成功！',
+        3 => '请求非法！',
+        4 => 'fail！',
     ];
 
     protected function setReturnMsg($code=0){

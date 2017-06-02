@@ -15,4 +15,9 @@ class VerifyCsrfToken extends BaseVerifier
         //
         '/wechat'
     ];
+    
+    // 在cookie中进行scrf校验
+    public function handle($request, \Closure $next) {
+        return parent::addCookieToResponse($request, $next($request));
+    }
 }
