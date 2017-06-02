@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Redis;
 class WechatController extends CommonController
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Request $request){
         $req_data = $request->all();
         $postStr = file_get_contents("php://input");
