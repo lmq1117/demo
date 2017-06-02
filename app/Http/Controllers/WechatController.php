@@ -8,8 +8,14 @@ use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Tools\Wechat\Wechat;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 class WechatController extends CommonController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function index(Request $request){
         $req_data = $request->all();
@@ -23,6 +29,9 @@ class WechatController extends CommonController
         $fromUsername = $postObj->FromUserName;    //谁发给我的
         $toUsername = $postObj->ToUserName;         //发给谁的 公众号的微信号
         $keyword = trim($postObj->Content);         //发的啥 文本消息有
+
+        //session(['userInfo'=>'wxx']);
+        $this->session->set('sessionid_'.$fromUsername,$postObj);
 
         if($postObj->MsgType == 'text'){
             //文本消息
@@ -92,7 +101,7 @@ class WechatController extends CommonController
                         //$user = $user->toArray();
                         Log::info('----$user----'.json_encode($user));
                         //session(['userInfo'=>$postObj->FromUserName]);
-                        $request->session()->put('userInfo',$postObj->FromUserName);
+                        //$request->session()->put('userInfo',$postObj->FromUserName);
 
 
 

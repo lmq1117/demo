@@ -16,8 +16,14 @@ class GoodsNoticeController extends ApiTmpController
         $goods_notice->g_id = $data['g_id'];
 
         $user_name = $data['username'];
-        $user = User::where('name',$user_name)->first();
+        $user = User::where('wx_openid',$user_name)->first();
         $goods_notice->u_id = $user->id;
+
+        if($check_duplicate = GoodsNotice::where('u_id',$goods_notice->u_id)->where('g_id',$goods_notice->g_id)->first()){
+            //关注失败
+            $this->setReturnMsg(3);
+            return $this->returnMsg;
+        }
         $goods_notice->save();
 
         if($goods_notice->id){

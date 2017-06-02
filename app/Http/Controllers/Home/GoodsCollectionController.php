@@ -22,13 +22,17 @@ class GoodsCollectionController extends ApiTmpController
         $user_name = $data['username'];
         //$user->name = $user_name;
         //$user->find;
-        $user = User::where('name',$user_name)->first();
+        $user = User::where('wx_openid',$user_name)->first();
         //return $user;
 
 
         //$goods_collection->g_id = $data['g_id'];
         $goods_collection->u_id = $user->id;
-
+        if($check_duplicate = GoodsCollection::where('u_id',$goods_collection->u_id)->where('g_id',$goods_collection->g_id)->first()){
+            //关注失败
+            $this->setReturnMsg(4);
+            return $this->returnMsg;
+        }
 
         $goods_collection->save();
         //return $goods_collection->id;

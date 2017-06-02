@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class GoodsController extends ApiTmpController
 {
@@ -52,6 +53,7 @@ class GoodsController extends ApiTmpController
         //return $user;
         //return session('userInfo','aaaaa');
         //$request->session()->put('userInfo','lmq');
+        //Redis::set('name','mary jack');
         session(['userInfo'=>'lmq1117']);
         $data = $request->session()->all();
         return $data;

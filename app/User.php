@@ -34,6 +34,6 @@ class User extends Authenticatable
 
 
     public static function findForId($username){
-        return self::where('name',$username)->first();
+        return self::where('wx_openid',$username)->first();
     }
 }
