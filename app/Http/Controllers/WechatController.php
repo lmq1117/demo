@@ -31,7 +31,7 @@ class WechatController extends CommonController
         $keyword = trim($postObj->Content);         //发的啥 文本消息有
 
         //session(['userInfo'=>'wxx']);
-        $this->session->set('session_id'.$fromUsername,$fromUsername);
+        $this->session->set('sessionid_'.$fromUsername,$fromUsername);
 
         if($postObj->MsgType == 'text'){
             //文本消息
