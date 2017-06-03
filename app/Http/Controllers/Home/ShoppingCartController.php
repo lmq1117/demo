@@ -21,20 +21,42 @@ class ShoppingCartController extends CommonController
         //sessionid
         //商品数量
         $req_data = $request->all();
+
+        //公共信息
         $session_id = $req_data['session_id'];
         $u_id = $req_data['u_id'];
         $g_id = $req_data['g_id'];
-        $num = $req_data['num'];//加入购物车的商品数量
+        $cart_num = $req_data['num'];//加入购物车的商品数量
+
+        $act = $req_data['act'];
+
+        switch ($act){
+            case 'add':
+
+                $goods = Goods::find($g_id);
+                $session = $this->session->get($session_id);
+
+                //购物车里边有该商品，增加商品数量
+                if($session['shopping_cart'][$g_id]){
+                    $goods = $session['shopping_cart'][$g_id];
+                    //$old_cart_num = $goods->cart_num;
+                    $goods->cart_num = $goods->cart_num + $cart_num;
+
+                } else {
+                    $goods->cart_num = $cart_num;
+                    $session['shopping_cart'][$g_id] = $goods;
+                }
+                //将商品信息查出来，拼接上商品数量，加入购物车
+                //取出session 里边的购物车信息，
+
+                $this->session->set($session_id,$session);
+                break;
+
+        }
 
 
-        //将商品信息查出来，拼接上商品数量，加入购物车
-        $goods = Goods::find($g_id);
-        $goods->num = $num;
-        $shoppingcart_data[] = $goods
-        $this->session->set($session_id.'_shoppingcart',$shoppingcart_data);
-        //if(){
-        //
-        //}
+
+
 
 
 

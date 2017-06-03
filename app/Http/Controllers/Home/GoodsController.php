@@ -54,9 +54,12 @@ class GoodsController extends ApiTmpController
         //return session('userInfo','aaaaa');
         //$request->session()->put('userInfo','lmq');
         //Redis::set('name','mary jack');
-        session(['userInfo'=>'lmq1117']);
-        $data = $request->session()->all();
-        return $data;
+        //session(['userInfo'=>'lmq1117']);
+        //$data = $request->session()->all();
+        //return $data;
+
+
+        //测试阿里大于短信发送方法
     }
 
     public function sessionTest(Request $request){
