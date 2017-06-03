@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 class WechatController extends CommonController
 {
+    protected $session_key;
 
     public function __construct()
     {
@@ -31,7 +32,10 @@ class WechatController extends CommonController
         $keyword = trim($postObj->Content);         //发的啥 文本消息有
 
         //session(['userInfo'=>'wxx']);
-        $this->session->set('sessionid_'.$fromUsername,$postObj);
+        $session['user_info'] = $postObj;
+
+        $this->session_key = 'sessionid_'.$fromUsername;
+        $this->session->set($this->session_key,$session);
 
         if($postObj->MsgType == 'text'){
             //文本消息
