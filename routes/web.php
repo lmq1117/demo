@@ -35,5 +35,5 @@ Route::get('/nlist','Home\GoodsController@goodsNoticeList');
 Route::any('/wechat','WechatController@index');
 
 // sakya
-Route::any('/visitor','VisitorController@index');
-Route::any('/visitor/test','VisitorController@test');
+Route::any('/visitor','Api\VisitorController@index');
+Route::any('/visitor/test','Api\VisitorController@test');
