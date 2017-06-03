@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redis;
 
 class CommonController extends ApiTmpController
 {
-    //
+    //操作session
     protected $session;
 
     protected $config = [
@@ -19,6 +19,7 @@ class CommonController extends ApiTmpController
     public function __construct()
     {
         //parent::__construction();
+        //使用redis db1
         $this->session = Redis::connection('session');
 
     }

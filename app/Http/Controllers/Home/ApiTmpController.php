@@ -11,8 +11,8 @@ class ApiTmpController extends Controller
     protected $returnMsg;
     protected $error_no = [
         0 => 'success',
-        1 => '收藏失败！',
-        2 => '关注成功！',
+        1 => '收藏商品失败！',
+        2 => '关注商品失败！',
         3 => '同一商品不能重复关注！',
         4 => '同一商品不能重复收藏！',
         5 => 'fail！',
