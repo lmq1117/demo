@@ -9,6 +9,10 @@ use App\Entity\Home\VisitorInfo;
 class VisitorController extends SakyaController
 {   
     private $short_code_test = '123456';
+    
+    public function test(){
+        return phpinfo();
+    }
     // 接收前端提交的表单的
     public function getFrom(Request $request){
         //visitor[name]=xuteng&visitor[phone]=15549494949&visitor[scene]=7&visitor[note]=terqrqwrqwrqwrqwrwqrwrqqwrqwrqwrqwrqwrqw&short_code=123456
