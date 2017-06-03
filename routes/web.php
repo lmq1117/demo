@@ -36,4 +36,4 @@ Route::any('/wechat','WechatController@index');
 
 // sakya
 Route::any('/visitor','Api\VisitorController@index');
-Route::any('/visitor/test','Api\VisitorController@test');
+Route::any('/visitor/test','Api\VisitorController@test_nginx');
