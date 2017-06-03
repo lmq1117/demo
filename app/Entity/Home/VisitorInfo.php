@@ -13,15 +13,24 @@ class VisitorInfo extends Model
     public $timestamps = true;
     
     protected $fillable = ['name','phone','scene','note'];
-
+    
+    /**
+      * 指定时间字符
+      *
+      * @param  DateTime|int  $value
+      * @return string
+      */
+    public function fromDateTime($value){
+        return strtotime(parent::fromDateTime($value));
+    }
     // visitor_info 建表sql
     private function sakya_create_table(){
         $sql = <<<EEE
 DROP TABLE IF EXISTS `visitor_info`;
 CREATE TABLE `visitor_info` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` int(1) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '公司名or联系人',
-  `phone` int(1) unsigned NOT NULL DEFAULT 0 COMMENT '手机号',
+  `phone` bigint(1) NOT NULL DEFAULT 0 COMMENT '手机号',
   `scene` int(1) unsigned NOT NULL DEFAULT 0 COMMENT '接入场景',
   `note` varchar(500) NOT NULL DEFAULT '' COMMENT '需求说明',
   `created_at` int(11) NOT NULL DEFAULT 0 COMMENT '新增时间',

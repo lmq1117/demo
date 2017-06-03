@@ -14,8 +14,7 @@ class ApiTmpController extends Controller
         1 => '收藏商品失败！',
         2 => '关注商品失败！',
         3 => '同一商品不能重复关注！',
-        4 => '同一商品不能重复收藏！',
-        5 => 'fail！',
+        4 => '同一商品不能重复收藏！'
     ];
 
     protected function setReturnMsg($code=0){

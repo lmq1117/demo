@@ -35,6 +35,5 @@ Route::get('/nlist','Home\GoodsController@goodsNoticeList');
 Route::any('/wechat','WechatController@index');
 
 // sakya
-Route::any('/visitor','Api\VisitorController@index');
 Route::any('/visitor/getfrom','Api\VisitorController@getFrom');
-Route::any('/visitor/test','Api\VisitorController@test_nginx');
+Route::any('/visitor/sendcode','Api\VisitorController@sendCode');
