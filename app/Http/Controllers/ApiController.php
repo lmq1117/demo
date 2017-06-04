@@ -1,5 +1,5 @@
 <?php
-
+//项目中没用
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
