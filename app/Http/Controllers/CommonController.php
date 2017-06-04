@@ -42,7 +42,7 @@ class CommonController extends ApiTmpController
         $req->setSmsTemplateCode("SMS_69980172");
         $resp = $c->execute($req);
         if($resp->code == 0){
-            //发送短信成功，将短信验证码存入redis  key规则：手机号码+随机数,有效期5分钟
+            //发送短信成功，将短信验证码存入redis  key规则：手机号码."_phone_code",有效期5分钟
             //18129921017_phone_code
             $phone_code_key = $phone_num . '_phone_code';
             $this->session->set($phone_code_key,$rand_num,5);
