@@ -35,7 +35,7 @@ class WechatController extends CommonController
         $session['user_info'] = $postObj;
 
         $this->session_key = 'sessionid_'.$fromUsername;
-        $this->session->set($this->session_key,$session);
+        $this->session->set($this->session_key,json_encode($session));
 
         if($postObj->MsgType == 'text'){
             //文本消息
