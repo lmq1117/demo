@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Home\ApiTmpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
-App\Tools\SMS\Alidayu\TopClient;
-App\Tools\SMS\Alidayu\AlibabaAliqinFcSmsNumSendRequest;
+use App\Tools\SMS\Alidayu\TopClient;
+use App\Tools\SMS\Alidayu\AlibabaAliqinFcSmsNumSendRequest;
 
 class CommonController extends ApiTmpController
 {
