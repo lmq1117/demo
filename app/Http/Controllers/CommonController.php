@@ -35,7 +35,8 @@ class CommonController extends ApiTmpController
         $req->setExtend($rand_num);
         $req->setSmsType("normal");
         $req->setSmsFreeSignName("烨华科技");
-        $req->setSmsParam("{\"code\":\"1234\",\"product\":\"alidayu\",\"name\":\"李明权\",\"smscode\":\"{$rand_num}\"}");
+        //$req->setSmsParam("{\"code\":\"1234\",\"product\":\"alidayu\",\"name\":\"李明权\",\"smscode\":\"{$rand_num}\"}");
+        $req->setSmsParam("{\"name\":\"李明权\",\"smscode\":\"{$rand_num}\"}");
         $req->setRecNum($phone_num);
 
 //绑定用户手机号码用到的短信模板
