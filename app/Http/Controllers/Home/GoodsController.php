@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Home\ApiTmpController;
+use App\Http\Controllers\ApiController;
 #use App\Entity\Home\{Goods,GoodsNotice,GoodsCollection};
 use App\Entity\Home\Goods;
 use App\Entity\Home\GoodsNotice;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 
-class GoodsController extends ApiTmpController
+class GoodsController extends ApiController
 {
     //
     public function test(Request $request){
@@ -60,6 +60,8 @@ class GoodsController extends ApiTmpController
 
 
         //测试阿里大于短信发送方法
+        $smsResult = $this->sendSms('18129931017');
+        return $smsResult;
     }
 
     public function sessionTest(Request $request){
