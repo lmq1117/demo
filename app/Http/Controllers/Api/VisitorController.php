@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Home\SakyaController;
 use Illuminate\Http\Request;
 use App\Entity\Home\VisitorInfo;
+use \Illuminate\Database\QueryException;
 
 class VisitorController extends SakyaController
 {   
