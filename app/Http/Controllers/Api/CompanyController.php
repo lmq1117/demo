@@ -18,6 +18,7 @@ class CompanyController extends SakyaController
     // 接收前端提交的表单的
     public function getFrom(Request $request){
         //company[company]=深深科技有限公司&company[value]=17000&company[name]=xuteng&company[phone]=15549494949&company[scene]=7&company[note]=terqrqwrqwrqwrqwrwqrwrqqwrqwrqwrqwrqwrqw&short_code=123456
+        // company[name]=rww&company[phone]=15549494949&company[scene]=7&company[note]=12412421&short_code=123456&company[value]=17000&company[company]=深深科技有限公司
         // 1. 控制器验证
 //        var_dump($request->all());exit;
         $this->validate($request, [

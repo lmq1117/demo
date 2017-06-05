@@ -12,7 +12,7 @@ class VisitorController extends SakyaController
     private $short_code_test = '123456';
     
     public function test(){
-        var_dump('ok !');exit;
+//        var_dump('ok !');exit;
         return phpinfo();
     }
     // 接收前端提交的表单的
