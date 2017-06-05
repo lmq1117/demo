@@ -48,6 +48,9 @@ class CommonController extends ApiTmpController
         $req->setSmsTemplateCode("SMS_69980172");
         $resp = $c->execute($req);
         Log::info('短信发送结果----'.json_encode($resp));
+        Log::info('短信发送结果对象查看err_code----'.$resp->result->err_code);
+        Log::info('短信发送结果对象查看success----'.$resp->result->success);
+
         //Log::info();
         if($resp->code == 0){
             //发送短信成功，将短信验证码存入redis  key规则：手机号码."_phone_code",有效期5分钟
