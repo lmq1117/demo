@@ -20,9 +20,9 @@ class VisitorInfo extends Model
       * @param  DateTime|int  $value
       * @return string
       */
-    public function fromDateTime($value){
-        return strtotime(parent::fromDateTime($value));
-    }
+//    public function fromDateTime($value){
+//        return strtotime(parent::fromDateTime($value));
+//    }
     // visitor_info 建表sql
     private function sakya_create_table(){
         $sql = <<<EEE
