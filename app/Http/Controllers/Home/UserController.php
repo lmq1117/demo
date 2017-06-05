@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\WechatController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Home\ApiTmpController;
 use App\User;
 use App\Entity\Home\Order;
 
-class UserController extends ApiTmpController
+class UserController extends WechatController
 {
     //会员中心所需数据
     public function getUserInfo(Request $request){
@@ -48,12 +49,21 @@ class UserController extends ApiTmpController
 
     }
 
-    //会员绑定手机号码
+    //会员绑定手机号码表单提交到这里
     public function bindPhone(Request $request){
         $req_data = $request->all();
         $u_id = $req_data['u_id'];
         $phone_num = $req_data['phone'];
+        $code = $req_data['code'];
 
-        //发送验证码
+        //验证短信验证码
+        if($this->verifyPhoneCode($phone_num,$code)){
+            $user = User::find($u_id);
+            $user->phone = $phone_num;
+            $user->save();
+
+            $this->setReturnMsg(0);
+            return $this->returnMsg;
+        }
     }
 }

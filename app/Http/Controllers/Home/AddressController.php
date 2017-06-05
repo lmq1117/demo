@@ -19,6 +19,8 @@ class AddressController extends WechatController
     //检查
     public function checkAddress(Request $request){
         $req_data = $request->all();
+        $u_id = $req_data['u_id'];
+
 
     }
 

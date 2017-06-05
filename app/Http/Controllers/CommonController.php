@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Home\ApiTmpController;
+use App\Http\Controllers\TmpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Tools\SMS\Alidayu\TopClient;
 use App\Tools\SMS\Alidayu\AlibabaAliqinFcSmsNumSendRequest;
 use Illuminate\Support\Facades\Log;
 
-class CommonController extends ApiTmpController
+class CommonController extends ApiController
 {
     //操作session的redis连接对象
     protected $session;
