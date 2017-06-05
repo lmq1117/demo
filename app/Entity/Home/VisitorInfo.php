@@ -33,8 +33,8 @@ CREATE TABLE `visitor_info` (
   `phone` bigint(1) NOT NULL DEFAULT 0 COMMENT '手机号',
   `scene` int(1) unsigned NOT NULL DEFAULT 0 COMMENT '接入场景',
   `note` varchar(500) NOT NULL DEFAULT '' COMMENT '需求说明',
-  `created_at` int(11) NOT NULL DEFAULT 0 COMMENT '新增时间',
-  `updated_at` int(11) NOT NULL DEFAULT 0 COMMENT '修改时间',
+  `created_at` datetime NOT NULL DEFAULT 0 COMMENT '新增时间',
+  `updated_at` datetime NOT NULL DEFAULT 0 COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=innodb AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='访客登记表';
 EEE;
