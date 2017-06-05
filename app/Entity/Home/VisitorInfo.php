@@ -14,6 +14,7 @@ class VisitorInfo extends Model
     
     protected $fillable = ['name','phone','scene','note'];
     
+    
     /**
       * 指定时间字符
       *
