@@ -47,4 +47,13 @@ class UserController extends ApiTmpController
 
 
     }
+
+    //会员绑定手机号码
+    public function bindPhone(Request $request){
+        $req_data = $request->all();
+        $u_id = $req_data['u_id'];
+        $phone_num = $req_data['phone'];
+
+        //发送验证码
+    }
 }

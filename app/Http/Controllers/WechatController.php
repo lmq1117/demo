@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 class WechatController extends CommonController
 {
-    protected $session_key;
+
 
     public function __construct()
     {
@@ -32,7 +32,7 @@ class WechatController extends CommonController
         $keyword = trim($postObj->Content);         //发的啥 文本消息有
 
         //session(['userInfo'=>'wxx']);
-        $session['user_info'] = $postObj;
+        $session['post_obj'] = $postObj;
 
         $this->session_key = 'sessionid_'.$fromUsername;
         $this->session->set($this->session_key,json_encode($session));
@@ -53,6 +53,9 @@ class WechatController extends CommonController
                         //获取用户信息
                         $wechatTools = new Wechat($this->config);
                         $userInfo = $wechatTools->getWxUserInfo($postObj->FromUserName);
+                        $session = json_decode($this->session->get($this->session_key),true);
+                        $session['userInfo']=$userInfo;
+                        $this->session->set($this->session_key,json_encode($session));
                         log::info('----getWxUserInfo----'.json_encode($userInfo));
                         //Cache::put('userInfo_'.$postObj->FromUserName,$userInfo,5);
                         //$cache_key = 'userInfo_'.$postObj->FromUserName;

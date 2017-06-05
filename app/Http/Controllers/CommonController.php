@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Tools\SMS\Alidayu\TopClient;
 use App\Tools\SMS\Alidayu\AlibabaAliqinFcSmsNumSendRequest;
+use Illuminate\Support\Facades\Log;
 
 class CommonController extends ApiTmpController
 {
-    //操作session
+    //操作session的redis连接对象
     protected $session;
+
+    protected $session_key;
 
     protected $config = [
         'appid'=>'wx858b762dc6af6249',
@@ -27,6 +30,8 @@ class CommonController extends ApiTmpController
     }
 
     protected function sendSms($phone_num){
+        $userInfo = json_decode($this->session->get($this->session_key));
+        $name = $userInfo['username'];
         $c = new TopClient;
         $c->appkey = '23888067';
         $c->secretKey = 'b760ea344aadc165f0dc7b9cae52cd5d';
@@ -36,12 +41,14 @@ class CommonController extends ApiTmpController
         $req->setSmsType("normal");
         $req->setSmsFreeSignName("烨华科技");
         //$req->setSmsParam("{\"code\":\"1234\",\"product\":\"alidayu\",\"name\":\"李明权\",\"smscode\":\"{$rand_num}\"}");
-        $req->setSmsParam("{\"name\":\"李明权\",\"smscode\":\"{$rand_num}\"}");
+        $req->setSmsParam("{\"name\":\"{$name}\",\"smscode\":\"{$rand_num}\"}");
         $req->setRecNum($phone_num);
 
-//绑定用户手机号码用到的短信模板
+        //绑定用户手机号码用到的短信模板
         $req->setSmsTemplateCode("SMS_69980172");
         $resp = $c->execute($req);
+        Log::info('短信发送结果----'.json_encode($resp));
+        //Log::info();
         if($resp->code == 0){
             //发送短信成功，将短信验证码存入redis  key规则：手机号码."_phone_code",有效期5分钟
             //18129921017_phone_code
