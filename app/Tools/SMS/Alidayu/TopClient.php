@@ -329,7 +329,8 @@ class TopClient
 		if (isset($respObject->code))
 		{
 			$logger = new TopLogger;
-			$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/top_biz_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
+			//$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/top_biz_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
+			$logger->conf["log_file"] =  '/opt/www/demo/storage/' . "logs/top_biz_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
 			$logger->log(array(
 				date("Y-m-d H:i:s"),
 				$resp
