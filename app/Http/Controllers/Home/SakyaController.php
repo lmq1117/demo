@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Validation\Validator;
 
 class SakyaController extends Controller
 {
@@ -39,5 +40,15 @@ class SakyaController extends Controller
         if ($re !== false && $re !== null && $re !== 0 && $re !== -1) {
             return json_encode(array('code' => 1, 'data' => $re));
         } return $this->returnMsg(0);
+    }
+    
+    protected function formatValidationErrors(Validator $validator){
+        if ($validator->fails()) {
+            // 假设所有 postman 的请求都是 AJAX 请求
+            request()->headers->set('X-Requested-With', 'XMLHttpRequest');
+            $errors = $validator->errors()->all();
+            $error = current($errors);
+            return ['code'=>0, 'message' => $error];
+        }
     }
 }
