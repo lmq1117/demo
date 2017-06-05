@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Home\SakyaController;
 use Illuminate\Http\Request;
-use App\Entity\Home\VisitorInfo;
+use App\Entity\Home\CompanyInfo;
 use \Illuminate\Database\QueryException;
 
-class VisitorController extends SakyaController
+class CompanyController extends SakyaController
 {   
     private $short_code_test = '123456';
     
@@ -17,28 +17,33 @@ class VisitorController extends SakyaController
     }
     // 接收前端提交的表单的
     public function getFrom(Request $request){
-        //visitor[name]=xuteng&visitor[phone]=15549494949&visitor[scene]=7&visitor[note]=terqrqwrqwrqwrqwrwqrwrqqwrqwrqwrqwrqwrqw&short_code=123456
+        //company[company]=深深科技有限公司&company[value]=17000&company[name]=xuteng&company[phone]=15549494949&company[scene]=7&company[note]=terqrqwrqwrqwrqwrwqrwrqqwrqwrqwrqwrqwrqw&short_code=123456
         // 1. 控制器验证
+//        var_dump($request->all());exit;
         $this->validate($request, [
-            'visitor.name' => 'required|min:2|max:50',
-            'visitor.phone' => 'required|min:2|max:20',
-            'visitor.scene' => 'required|integer',
-            'visitor.note' => 'max:500',
+            'company.name' => 'required|min:2|max:50',
+            'company.phone' => 'required|min:2|max:20',
+            'company.value' => 'required|integer',
+            'company.scene' => 'required|integer',
+            'company.company' => 'required|min:2|max:50',
+            'company.note' => 'max:500',
         ],[
             'required' => ':attribute为必填项!',
-            'min' => ':attribute长度不符合要求!',
+            'min' => ':attribute长度过短!',
             'max' => ':attribute长度过长!',
             'integer' => ':attribute必须为整数!',
         ],[
-            'visitor.name' => '姓名',
-            'visitor.phone' => '联系电话',
-            'visitor.scene' => '接入场景',
-            'visitor.note' => '需求备注',
+            'company.name' => '联系人',
+            'company.company' => '公司名称',
+            'company.value' => '预估金额',
+            'company.phone' => '联系电话',
+            'company.scene' => '接入场景',
+            'company.note' => '需求备注',
         ]);
         if($request->input('short_code') !== $this->short_code_test) return $this->returnMsg( 0 ,'短信验证码有误!');
         try{
-            $data = $request->input('visitor');
-            if(VisitorInfo::create($data)){
+            $data = $request->input('company');
+            if(CompanyInfo::create($data)){
                 return $this->returnMsg(1);
             }
         } catch (QueryException $ex) {
