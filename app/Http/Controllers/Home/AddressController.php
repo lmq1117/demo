@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Entity\Address;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WechatController;
 
@@ -16,10 +17,21 @@ class AddressController extends WechatController
      */
 
 
-    //检查
-    public function checkAddress(Request $request){
+    //添加地址
+    public function addaddress(Request $request){
         $req_data = $request->all();
         $u_id = $req_data['u_id'];
+        $path = $req_data['path'];//看前端怎么传过来
+        $detail = $req_data['detail_address'];
+        $count = Address::where('u_id',$u_id)->count();
+        $count = $count == 0 ? 1 : $count;
+        if($count == 1){
+            $is_default = 1;
+        } else {
+            $is_default = 0;
+        }
+
+
 
 
     }
