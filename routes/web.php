@@ -40,3 +40,4 @@ Route::any('/visitor/sendcode','Api\VisitorController@sendCode');
 Route::any('/company/getfrom','Api\CompanyController@getFrom');
 Route::any('/company/sendcode','Api\CompanyController@sendCode');
 Route::any('/visitor/test','Api\VisitorController@test');
+Route::any('/company/test','Api\CompanyController@test');
