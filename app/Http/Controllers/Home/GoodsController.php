@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 #use App\Entity\Home\{Goods,GoodsNotice,GoodsCollection};
@@ -61,6 +61,7 @@ class GoodsController extends ApiController
 
         //测试阿里大于短信发送方法
         $smsResult = $this->sendSms('18129931017');
+        Log::info('短信发送结果goods----'.json_encode($smsResult));
         return $smsResult;
     }
 
