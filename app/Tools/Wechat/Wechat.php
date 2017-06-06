@@ -7,6 +7,7 @@
  */
 namespace App\Tools\Wechat;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 class Wechat{
     private $appid;
     private $appSecret;
@@ -27,6 +28,8 @@ class Wechat{
 
     //生成服务号菜单
     public function createWxMenu($menu){
+        $accessToken = $this->getAccessToken();
+        Log::info(date('Y-m-d H:i:s',time()).'---accesstoken---'.$accessToken);
         $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$this->getAccessToken();
         return $this->curlPost($url,$menu);
     }
