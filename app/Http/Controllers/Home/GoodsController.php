@@ -168,4 +168,13 @@ class GoodsController extends ApiController
         $this->setReturnMsg(0);
         return $this->returnMsg;
     }
+
+    //测试ajax跨域2方法
+    public function index(){
+        return ['name'=>'mary','age'=>18,'sex'=>0];
+    }
+
+    public function getstr2(){
+        return ['name'=>'lili','age'=>18,'sex'=>0];
+    }
 }

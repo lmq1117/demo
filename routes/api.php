@@ -48,4 +48,9 @@ Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
 //我的购物记录
 //购物流程
 
+Route::post('/home/getstr','UserController@bindPhone');//用户绑定手机
+
+Route::post('home/getstr','GoodsController@index');
+Route::post('home/getstr2','GoodsController@getstr2');
+
 
