@@ -28,7 +28,7 @@ class SakyaController extends Controller
      */
     protected function returnMsg($code = 1, $msg = false){
         $message = $msg ? $msg : ( $this->code[$code] ?? 'fail!');
-        return json_encode( array('code'=>$code, 'message'=>$message));
+        return json_encode( array('code'=>$code, 'message'=>$message), JSON_UNESCAPED_UNICODE);
     }
     /**
      * echo json
@@ -38,7 +38,7 @@ class SakyaController extends Controller
      */
     protected function returnData($re=''){
         if ($re !== false && $re !== null && $re !== 0 && $re !== -1) {
-            return json_encode(array('code' => 1, 'data' => $re));
+            return json_encode(array('code' => 1, 'data' => $re), JSON_UNESCAPED_UNICODE);
         } return $this->returnMsg(0);
     }
     
