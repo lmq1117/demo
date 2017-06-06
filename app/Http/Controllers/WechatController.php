@@ -180,7 +180,7 @@ class WechatController extends CommonController
                             {
                                "type":"view",
                                "name":"网站门户",
-                               "url":"https://www.shinehua.com"
+                               "url":"https://www.shinehua.cn"
                             }]
                        },
                        {
