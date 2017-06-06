@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WechatController;
 
-class ApiController extends WechatController
+class ApiController extends Controller
 {
     protected $returnMsg;
     protected $error_no = [
