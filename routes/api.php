@@ -37,7 +37,7 @@ Route::post('/user/usercenter','Home\UserController@getUserInfo');//会员中心
 //订单状态 0待付款，1已付款待发货，2已付款已发货，3已付款已收货，4客户申请退款，5客户申请退款并被审核，6退款完成
 Route::post('/order/status/orderlist','Home\OrderController@getStatusOrderList');//post传不同的type区分不同状态的订单
 Route::post('/shoppingcart','Home\ShoppingCartController@addGoodsToShoppingCart');//购物车增删改查
-Route::post('/usr/bind','UserController@bindPhone');//用户绑定手机
+Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
 
 //以下
 //Route::post('/order/before_pay','Home\OrderController@getGoodsDetail');//待付款

@@ -33,9 +33,13 @@ class OrderController extends WechatController
         $username = $req_data['username'];
         $user = User::findForId($username);
 
-        $type = $req_data['status'];
+        $type = isset($req_data['status'])?$req_data['status'] : '';
 
-        $orderList =  Order::where('u_id',$user->id)->where('status',$type)->orderBy('created_at')->get();
+        if($type == ''){
+            $orderList =  Order::where('u_id',$user->id)->orderBy('created_at')->get();
+        } else {
+            $orderList =  Order::where('u_id',$user->id)->where('status',$type)->orderBy('created_at')->get();
+        }
         $this->returnMsg['data']['all_order_list'] = $orderList;
         $this->setReturnMsg();
         return $this->returnMsg;
