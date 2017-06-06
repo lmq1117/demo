@@ -31,7 +31,7 @@ Route::post('/user/notice','Home\GoodsController@goodsNoticeList');//当前用�
 Route::post('/user/collection','Home\GoodsController@goodsCollectionList');//当前用户收藏的商品列表
 Route::post('/order/all','Home\OrderController@getAllOrderList');//全部订单
 
-Route::post('/user/usercenter','UserController@getUserInfo');//会员中心 会员信息
+Route::post('/user/usercenter','Home\UserController@getUserInfo');//会员中心 会员信息
 
 //status
 //订单状态 0待付款，1已付款待发货，2已付款已发货，3已付款已收货，4客户申请退款，5客户申请退款并被审核，6退款完成
