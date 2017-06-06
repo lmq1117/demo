@@ -33,7 +33,7 @@ CREATE TABLE `visitor_info` (
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '公司名or联系人',
   `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号',
   `scene` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '接入场景',
-  `note` varchar(500) NOT NULL DEFAULT '' COMMENT '需求说明',
+  `note` varchar(500) DEFAULT '' COMMENT '需求说明',
   `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '新增时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   PRIMARY KEY (`id`)
