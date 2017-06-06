@@ -35,6 +35,8 @@ Route::post('/user/usercenter','Home\UserController@getUserInfo');//会员中心
 
 
 Route::post('/order/status/orderlist','Home\OrderController@getStatusOrderList');//post传不同的type区分不同状态的订单
+Route::post('/shoppingcart','Home\ShoppingCartController@addGoodsToShoppingCart');//购物车增删改查
+Route::post('/usr/bind','UserController@bindPhone');//用户绑定手机
 
 //以下
 //Route::post('/order/before_pay','Home\OrderController@getGoodsDetail');//待付款

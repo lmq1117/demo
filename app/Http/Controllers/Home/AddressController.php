@@ -25,11 +25,12 @@ class AddressController extends WechatController
         $detail = $req_data['detail_address'];
         $count = Address::where('u_id',$u_id)->count();
         $count = $count == 0 ? 1 : $count;
-        if($count == 1){
+        if($count == 1){ //第一条地址直接设置为默认地址
             $is_default = 1;
         } else {
             $is_default = 0;
         }
+
 
 
 
