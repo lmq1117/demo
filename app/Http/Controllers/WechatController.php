@@ -146,7 +146,7 @@ class WechatController extends CommonController
     }
 
     public function createMemu(){
-        $wobj = new Wechat();
+        $wobj = new Wechat($this->config);
         $res = $wobj->createWxMenu('{
     "button": [
         {
