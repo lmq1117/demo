@@ -56,7 +56,7 @@ class CompanyController extends SakyaController{
     // 发送短信验证码
     public function sendCode(Request $request){
         $this->validate($request, [
-            'visitor.phone' => 'required|min:2|max:20'
+            'company.phone' => 'required|min:2|max:20'
         ],[
             'required' => ':attribute为必填项!',
             'min' => ':attribute长度不符合要求!',
@@ -64,7 +64,7 @@ class CompanyController extends SakyaController{
         ],[
             'visitor.phone' => '联系电话'
         ]);
-        $data = $request->input('visitor'); 
+        $data = $request->input('company'); 
         $phone = $data['phone'];
         // 发送短信 todo
         $this->sendSms($phone);
