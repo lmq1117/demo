@@ -198,7 +198,6 @@ class WechatController extends CommonController
                "url":"http://wshop.lmqde.com"
                 },
             ]
-            ]
         }, 
         
     ]
