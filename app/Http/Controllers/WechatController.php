@@ -144,4 +144,66 @@ class WechatController extends CommonController
         $wechatObj = new wechatCallbackapiTest($data);
         return $wechatObj->valid();
     }
+
+    public function createMemu(){
+        $wobj = new Wechat();
+        $res = $wobj->createWxMenu('{
+    "button": [
+        {
+            "name": "走进烨华", 
+            "sub_button": [
+                {   
+               "type":"view",
+               "name":"烨华介绍",
+               "url":"http://wqiye.lmqde.com/index.html"
+                },
+                {   
+               "type":"view",
+               "name":"官网",
+               "url":"http://wqiye.lmqde.com/index.html"
+                },
+            ]
+        }, 
+        {
+            "name": "给我派单", 
+            "sub_button": [
+                {   
+               "type":"view",
+               "name":"支付接入",
+               "url":"http://wqiye.lmqde.com/payJoint.html"
+                },
+                {   
+               "type":"view",
+               "name":"微应用",
+               "url":"http://wqiye.lmqde.com/proposer.html"
+                },
+                {   
+               "type":"view",
+               "name":"网站门户",
+               "url":"https://www.shinehua.com"
+                },
+            ]
+        }, 
+        {
+            "name": "新品上架", 
+            "sub_button": [
+                {   
+               "type":"view",
+               "name":"微商城",
+               "url":"http://wshop.lmqde.com"
+                },
+                {   
+               "type":"view",
+               "name":"棋牌休闲",
+               "url":"http://wshop.lmqde.com"
+                },
+            ]
+            ]
+        }, 
+        
+    ]
+}');
+        Log::Info(date('Y-m-d H:i:s',time()).'---生成菜单---'.json_encode($res));
+        return $res;
+    }
 }
