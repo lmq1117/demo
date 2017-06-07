@@ -62,7 +62,7 @@ class ShoppingCartController extends CommonController
 
             case 'edit':
                 $goods = $session['shopping_cart'][$g_id];
-                $goods->cart_num = $cart_num;
+                $goods['cart_num'] = $cart_num;
                 $session['shopping_cart'][$g_id] = $goods;
                 //$this->session->set($session_id,json_encode($session));
                 break;
