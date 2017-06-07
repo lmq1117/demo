@@ -38,7 +38,7 @@ class ShoppingCartController extends CommonController
         switch ($opearte){
             case 'add':
                 //购物车里边有该商品，增加商品数量
-                if($session['shopping_cart'][$g_id]){
+                if(isset($session['shopping_cart'][$g_id])){
                     $goods = $session['shopping_cart'][$g_id];
                     //$old_cart_num = $goods->cart_num;
                     $goods->cart_num = $goods->cart_num + $cart_num;
