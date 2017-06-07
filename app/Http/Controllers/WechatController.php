@@ -31,8 +31,11 @@ class WechatController extends CommonController
         $toUsername = $postObj->ToUserName;         //发给谁的 公众号的微信号
         $keyword = trim($postObj->Content);         //发的啥 文本消息有
 
-        //session(['userInfo'=>'wxx']);
         $session['post_obj'] = $postObj;
+        $userInfo = User::findForId($fromUsername);
+        if($userInfo){
+            session(['userInfo'=>$userInfo]);
+        }
 
         $this->session_key = 'sessionid_'.$fromUsername;
         $this->session->set($this->session_key,json_encode($session));

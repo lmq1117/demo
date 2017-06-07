@@ -37,7 +37,6 @@ class ShoppingCartController extends CommonController
         $session = json_decode($session_str,true);
         switch ($opearte){
             case 'add':
-
                 //购物车里边有该商品，增加商品数量
                 if($session['shopping_cart'][$g_id]){
                     $goods = $session['shopping_cart'][$g_id];
