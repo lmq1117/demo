@@ -66,6 +66,7 @@ class ShoppingCartController extends CommonController
         }
         $this->session->set($session_id,json_encode($session));
         $this->setReturnMsg(0);
+        return $this->returnMsg;
 
 
 
