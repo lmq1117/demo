@@ -23,7 +23,7 @@ Route::group(['prefix'=>'/v1','middleware'=>['api']],function (){
 
 //Route::post('/goods/one','Home\GoodsController@getOne');
 //啥都不用
-Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods');
+//Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods');
 Route::post('/goods/goodsinfo','Home\GoodsController@getGoodsDetail');
 Route::post('/goods/notice','Home\GoodsNoticeController@goodsNoticeAdd');//添加关注商品
 Route::post('/goods/collection','Home\GoodsCollectionController@goodsCollectionAdd');//添加收藏商品
@@ -56,6 +56,7 @@ Route::post('/home/getstr','UserController@bindPhone');//用户绑定手机
 Route::group(['prefix'=>'home'],function (){
     Route::post('getstr','Home\GoodsController@index')->middleware('cors');
     Route::post('getstr2','Home\GoodsController@getstr2')->middleware('cors');
+    Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods')->middleware('cors');
 });
 
 

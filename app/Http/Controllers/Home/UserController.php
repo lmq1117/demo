@@ -58,6 +58,7 @@ class UserController extends WechatController
 
         //验证短信验证码
         if($this->verifyPhoneCode($phone_num,$code)){
+            //短信验证码
             $user = User::find($u_id);
             $user->phone = $phone_num;
             $user->save();
