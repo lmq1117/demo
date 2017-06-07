@@ -49,10 +49,10 @@ class ShoppingCartController extends CommonController
                         //$goods['cart_num'] = $goods['cart_num'] + $cart_num;
 
                     }
-                    //else {
-                    //    $goods->cart_num = $cart_num;
-                    //    $session['shopping_cart'][$g_id] = $goods;
-                    //}
+                    else {
+                        $goods->cart_num = $cart_num;
+                        $session['shopping_cart'][$g_id] = $goods;
+                    }
                 } else {
                     $goods->cart_num = $cart_num;
                     $session['shopping_cart'][$g_id] = $goods;
