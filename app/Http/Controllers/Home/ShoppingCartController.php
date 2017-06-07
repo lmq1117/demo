@@ -23,11 +23,13 @@ class ShoppingCartController extends CommonController
         $req_data = $request->all();
 
         //公共信息
-        $session_id = $req_data['session_id'];
-        $u_id = $req_data['u_id'];
+        $appid = $req_data['username'];
+        $user = User::findForId($appid);
+        $u_id = $user->id;
         $g_id = $req_data['g_id'];
         $cart_num = $req_data['num'];//加入购物车的商品数量
 
+        $session_id = "sessionid_" . $appid;
         $opearte = $req_data['operate'];
 
         $goods = Goods::find($g_id);
@@ -64,6 +66,7 @@ class ShoppingCartController extends CommonController
 
         }
         $this->session->set($session_id,json_encode($session));
+        $this->setReturnMsg(0);
 
 
 
