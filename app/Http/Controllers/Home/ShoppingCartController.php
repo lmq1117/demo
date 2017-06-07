@@ -70,6 +70,8 @@ class ShoppingCartController extends CommonController
                 unset($session['shopping_cart'][$g_id]);
                 //$this->session->set($session_id,json_encode($session));
                 break;
+            case 'list':
+                $this->returnMsg['data']['shopping_cart'] = $session['shopping_cart'];
 
         }
         $this->session->set($session_id,json_encode($session));
