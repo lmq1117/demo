@@ -53,10 +53,10 @@ Route::post('/home/getstr','UserController@bindPhone');//用户绑定手机
 //Route::post('home/getstr','Home\GoodsController@index');
 //Route::post('home/getstr2','Home\GoodsController@getstr2');
 
-Route::group(['prefix'=>'home'],function (){
-    Route::post('getstr','Home\GoodsController@index')->middleware('cors');
-    Route::post('getstr2','Home\GoodsController@getstr2')->middleware('cors');
-    Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods')->middleware('cors');
+Route::group(['middleware'=>'cors'],function (){
+    Route::post('getstr','Home\GoodsController@index');
+    Route::post('getstr2','Home\GoodsController@getstr2');
+    Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods');
 });
 
 
