@@ -42,14 +42,17 @@ class ShoppingCartController extends CommonController
                 //if(isset($session['shopping_cart'][$g_id])){
                 if(array_key_exists('shopping_cart',$session)){
                     if(array_key_exists($g_id,$session['shopping_cart'])){
-                        $goods = $session['shopping_cart'][$g_id];
+                        //$goods = $session['shopping_cart'][$g_id];
                         //$old_cart_num = $goods->cart_num;
-                        $goods['cart_num'] = $goods['cart_num'] + $cart_num;
 
-                    } else {
-                        $goods->cart_num = $cart_num;
-                        $session['shopping_cart'][$g_id] = $goods;
+                        $session['shopping_cart']['$g_id']['cart_num'] = $session['shopping_cart']['$g_id']['cart_num'] + $cart_num;
+                        //$goods['cart_num'] = $goods['cart_num'] + $cart_num;
+
                     }
+                    //else {
+                    //    $goods->cart_num = $cart_num;
+                    //    $session['shopping_cart'][$g_id] = $goods;
+                    //}
                 } else {
                     $goods->cart_num = $cart_num;
                     $session['shopping_cart'][$g_id] = $goods;
