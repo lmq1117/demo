@@ -40,15 +40,18 @@ class ShoppingCartController extends CommonController
                 //购物车里边有该商品，增加商品数量
                 //var_dump($session);exit;
                 //if(isset($session['shopping_cart'][$g_id])){
-                if(array_key_exists($g_id,$session['shopping_cart'])){
-                    $goods = $session['shopping_cart'][$g_id];
-                    //$old_cart_num = $goods->cart_num;
-                    $goods->cart_num = $goods->cart_num + $cart_num;
+                if(array_key_exists('shopping_cart',$session)){
+                    if(array_key_exists($g_id,$session['shopping_cart'])){
+                        $goods = $session['shopping_cart'][$g_id];
+                        //$old_cart_num = $goods->cart_num;
+                        $goods->cart_num = $goods->cart_num + $cart_num;
 
+                    }
                 } else {
                     $goods->cart_num = $cart_num;
                     $session['shopping_cart'][$g_id] = $goods;
                 }
+
                 //将商品信息查出来，拼接上商品数量，加入购物车
                 //取出session 里边的购物车信息，
                 //$this->session->set($session_id,json_encode($session));
