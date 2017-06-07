@@ -26,8 +26,8 @@ class ShoppingCartController extends CommonController
         $appid = $req_data['username'];
         $user = User::findForId($appid);
         $u_id = $user->id;
-        $g_id = $req_data['g_id'];
-        $cart_num = $req_data['num'];//加入购物车的商品数量
+        $g_id = isset($req_data['g_id']) ? $req_data['g_id'] : '';
+        $cart_num = isset($req_data['num']) ? $req_data['num'] : '';//加入购物车的商品数量
 
         $session_id = "sessionid_" . $appid;
         $opearte = $req_data['operate'];
