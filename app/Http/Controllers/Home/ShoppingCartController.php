@@ -45,7 +45,7 @@ class ShoppingCartController extends CommonController
                         //$goods = $session['shopping_cart'][$g_id];
                         //$old_cart_num = $goods->cart_num;
 
-                        $session['shopping_cart']['$g_id']['cart_num'] = $session['shopping_cart']['$g_id']['cart_num'] + $cart_num;
+                        $session['shopping_cart'][$g_id]['cart_num'] = $session['shopping_cart'][$g_id]['cart_num'] + $cart_num;
                         //$goods['cart_num'] = $goods['cart_num'] + $cart_num;
 
                     }
