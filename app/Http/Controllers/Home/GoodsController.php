@@ -175,6 +175,6 @@ class GoodsController extends ApiController
     }
 
     public function getstr2(){
-        return ['name'=>'lili','age'=>18,'sex'=>0];
+        return ['name'=>'lili','age'=>17,'sex'=>0];
     }
 }
