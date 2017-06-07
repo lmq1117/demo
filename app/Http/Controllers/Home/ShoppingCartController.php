@@ -44,7 +44,7 @@ class ShoppingCartController extends CommonController
                     if(array_key_exists($g_id,$session['shopping_cart'])){
                         $goods = $session['shopping_cart'][$g_id];
                         //$old_cart_num = $goods->cart_num;
-                        $goods['cart_num'] += $cart_num;
+                        $goods['cart_num'] = $goods['cart_num'] + $cart_num;
 
                     } else {
                         $goods->cart_num = $cart_num;
