@@ -50,8 +50,8 @@ Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
 
 Route::post('/home/getstr','UserController@bindPhone');//用户绑定手机
 
-Route::post('home/getstr','Home\GoodsController@index');
-Route::post('home/getstr2','Home\GoodsController@getstr2');
+//Route::post('home/getstr','Home\GoodsController@index');
+//Route::post('home/getstr2','Home\GoodsController@getstr2');
 
 Route::group(['prefix'=>'home'],function (){
     Route::post('getstr','Home\GoodsController@index')->middleware('cors');
