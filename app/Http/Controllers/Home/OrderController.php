@@ -33,7 +33,8 @@ class OrderController extends WechatController
         $username = $req_data['username'];
         $user = User::findForId($username);
 
-        $type = isset($req_data['status'])?$req_data['status'] : '';
+        //传* 获取所有状态的
+        $type = $req_data['status'] == '*' ? $req_data['status'] : '';
 
         if($type == ''){
             $orderList =  Order::where('u_id',$user->id)->orderBy('created_at')->get();
