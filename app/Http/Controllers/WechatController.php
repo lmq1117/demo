@@ -34,7 +34,7 @@ class WechatController extends CommonController
         $session['post_obj'] = $postObj;
         $userInfo = User::findForId($fromUsername);
         if($userInfo){
-            session(['userInfo'=>$userInfo]);
+            $session['userInfo'] = $userInfo;
         }
 
         $this->session_key = 'sessionid_'.$fromUsername;
