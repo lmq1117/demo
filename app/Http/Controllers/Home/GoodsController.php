@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Home;
+use App\Http\Controllers\CommonController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
-#use App\Entity\Home\{Goods,GoodsNotice,GoodsCollection};
+//use App\Http\Controllers\ApiController;
+//#use App\Entity\Home\{Goods,GoodsNotice,GoodsCollection};
 use App\Entity\Home\Goods;
 use App\Entity\Home\GoodsNotice;
 use App\Entity\Home\GoodsCollection;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 
-class GoodsController extends ApiController
+class GoodsController extends CommonController
 {
     //
     public function test(Request $request){
