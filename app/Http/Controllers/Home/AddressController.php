@@ -21,7 +21,7 @@ class AddressController extends WechatController
     public function getAreaInfo(Request $request){
         $req_data = $request->all();
         $path = isset($req_data['path']) ? $req_data['path'] : '';
-
+        var_dump($req_data);
         var_dump($path);exit;
         switch($path){
             case ''://查出省信息
