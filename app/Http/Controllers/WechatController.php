@@ -216,6 +216,7 @@ class WechatController extends CommonController
         $appid = $req_data['username'];
         $wechatTools = new Wechat($this->config);
         $userInfo = $wechatTools->getWxUserInfo($appid);
+        $this->returnMsg['data']['userinfo'] = $userInfo;
         $this->setReturnMsg(0);
         return $this->returnMsg;
 
