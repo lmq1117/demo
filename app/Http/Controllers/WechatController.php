@@ -219,6 +219,15 @@ class WechatController extends CommonController
         $this->returnMsg['data']['userinfo'] = $userInfo;
         $this->setReturnMsg(0);
         return $this->returnMsg;
+    }
+
+
+    public function getOpenId(){
+        $appid = substr($this->session_key,10);
+        $this->returnMsg['data']['appid'] = $appid;
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
 
     }
+
 }
