@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Home;
 use App\Entity\Home\GoodsCollection;
+use App\Http\Controllers\WechatController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Home\ApiTmpController;
+//use App\Http\Controllers\Home\ApiTmpController;
 use App\User;
 
-class GoodsCollectionController extends ApiTmpController
+class GoodsCollectionController extends WechatController
 {
     //用户添加商品收藏
     public function goodsCollectionAdd(Request $request){

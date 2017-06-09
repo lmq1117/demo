@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\WechatController;
 use Illuminate\Http\Request;
 use App\Entity\Home\GoodsNotice;
-use App\Http\Controllers\Home\ApiTmpController;
+//use App\Http\Controllers\Home\ApiTmpController;
 use App\User;
 
-class GoodsNoticeController extends ApiTmpController
+class GoodsNoticeController extends WechatController
 {
     //用户添加商品关注
     public function goodsNoticeAdd(Request $request){
