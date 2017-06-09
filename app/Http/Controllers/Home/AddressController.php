@@ -71,6 +71,9 @@ class AddressController extends WechatController
         $address->path = $path;
         $address->detail_address = $detail;
         $address->num = $count == 1 ? $count : $count + 1;
+        $address->to_user = $req_data['to_user'];
+        $address->phone = $req_data['phone'];
+        $address->post_num = $req_data['post_num'];
         $address->save();
         if($address->id > 0){
             $this->setReturnMsg(0);
