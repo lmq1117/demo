@@ -45,6 +45,7 @@ Route::group(['middleware'=>'cors'],function (){
 
     //
     Route::post('/shoppingcart','Home\ShoppingCartController@addGoodsToShoppingCart');//购物车增删改查
+    Route::post('/wechat/useropenid','WechatController@getOpenId');
     Route::post('/wechat/userinfo','WechatController@getUserInfo');
     Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
 
