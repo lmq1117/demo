@@ -22,6 +22,7 @@ class AddressController extends WechatController
         $req_data = $request->all();
         $path = isset($req_data['path']) ? $req_data['path'] : '';
 
+        var_dump($path);exit;
         switch($path){
             case ''://查出省信息
                 $area[1] = Areas::where('parent_id','1')->get();
