@@ -19,7 +19,7 @@ class AddressController extends WechatController
     //显示三级地址列表
     public function getAreaInfo(Request $request){
         $req_data = $request->all();
-        $path = $req_data['path'];
+        $path = isset($req_data['path']) ? $req_data['path'] : '';
 
         switch($path){
             case ''://查出省信息
