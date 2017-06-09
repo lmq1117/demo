@@ -52,7 +52,7 @@ class AddressController extends WechatController
     }
 
     //添加地址
-    public function addaddress(Request $request){
+    public function addAddress(Request $request){
         $req_data = $request->all();
         $appid = $req_data['username'];
         $u_id = User::findForId($appid);
