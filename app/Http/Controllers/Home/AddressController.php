@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Entity\Address;
+use App\Entity\Areas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WechatController;
 
