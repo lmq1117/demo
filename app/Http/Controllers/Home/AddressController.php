@@ -26,23 +26,23 @@ class AddressController extends WechatController
         //var_dump($path);exit;
         switch($path){
             case ''://查出省信息
-                $area[1] = Areas::where('parent_id','1')->get();
+                $area['province'] = Areas::where('parent_id','1')->get();
                 break;
             case substr_count($path,',') == 1://查省下面的所有市
                 $path = rtrim($path,',');
                 $pathArr = explode(',',$path);
                 $sheng_id = $pathArr[0];
-                $area[1] = Areas::where('parent_id','1')->get();
-                $area[2] = Areas::where('parent_id',$sheng_id)->get();
+                $area['province'] = Areas::where('parent_id','1')->get();
+                $area['city'] = Areas::where('parent_id',$sheng_id)->get();
                 break;
             case substr_count($path,',') == 2://查市下面的所有县市or区
                 $path = rtrim($path,',');
                 $pathArr = explode(',',$path);
                 $sheng_id = $pathArr[0];
                 $shi_id = $pathArr[1];
-                $area[1] = Areas::where('parent_id','1')->get();
-                $area[2] = Areas::where('parent_id',$sheng_id)->get();
-                $area[3] = Areas::where('parent_id',$shi_id)->get();
+                $area['province'] = Areas::where('parent_id','1')->get();
+                $area['city'] = Areas::where('parent_id',$sheng_id)->get();
+                $area['district'] = Areas::where('parent_id',$shi_id)->get();
                 break;
         }
         $this->returnMsg['data']['area_info'] = $area;

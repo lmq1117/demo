@@ -28,8 +28,7 @@ Route::group(['middleware'=>'cors'],function (){
     Route::post('getstr2','Home\GoodsController@getstr2');
     Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods');
 
-    //Route::post('/goods/one','Home\GoodsController@getOne');
-    //啥都不用
+
     //Route::post('/goods/goodslist','Home\GoodsController@getShopHomeGoods');
     Route::post('/goods/goodsinfo','Home\GoodsController@getGoodsDetail');
     Route::post('/goods/notice','Home\GoodsNoticeController@goodsNoticeAdd');//添加关注商品
@@ -46,6 +45,7 @@ Route::group(['middleware'=>'cors'],function (){
 
     //
     Route::post('/shoppingcart','Home\ShoppingCartController@addGoodsToShoppingCart');//购物车增删改查
+    Route::post('/wechat/userinfo','WechatController@getUserInfo');
     Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
 
     //以下
