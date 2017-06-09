@@ -55,7 +55,8 @@ class AddressController extends WechatController
     public function addAddress(Request $request){
         $req_data = $request->all();
         $appid = $req_data['username'];
-        $u_id = User::findForId($appid);
+        $user = User::findForId($appid);
+        $u_id = $user->id;
         $path = $req_data['path'];//看前端怎么传过来
         $detail = $req_data['detail_address'];
         $count = Address::where('u_id',$u_id)->count();
