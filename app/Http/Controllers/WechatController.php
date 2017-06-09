@@ -208,4 +208,16 @@ class WechatController extends CommonController
         Log::Info(date('Y-m-d H:i:s',time()).'---生成菜单---'.json_encode($res));
         return $res;
     }
+
+
+    //获取微信用户信息
+    public function getUserInfo(Request $request){
+        $req_data = $request->all();
+        $appid = $req_data['username'];
+        $wechatTools = new Wechat($this->config);
+        $userInfo = $wechatTools->getWxUserInfo($appid);
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
+
+    }
 }
