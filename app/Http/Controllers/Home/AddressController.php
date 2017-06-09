@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Entity\Address;
-use App\Entity\Areas;
+use App\Entity\Home\Address;
+use App\Entity\Home\Areas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WechatController;
+use App\User;
 
 class AddressController extends WechatController
 {
@@ -53,7 +54,8 @@ class AddressController extends WechatController
     //添加地址
     public function addaddress(Request $request){
         $req_data = $request->all();
-        $u_id = $req_data['u_id'];
+        $appid = $req_data['username'];
+        $u_id = User::findForId($appid);
         $path = $req_data['path'];//看前端怎么传过来
         $detail = $req_data['detail_address'];
         $count = Address::where('u_id',$u_id)->count();
@@ -63,6 +65,21 @@ class AddressController extends WechatController
         } else {
             $is_default = 0;
         }
+
+        $address = new Address;
+        $address->u_id = $u_id;
+        $address->path = $path;
+        $address->detail_address = $detail;
+        $address->num = $count == 1 ? $count : $count + 1;
+        $address->save();
+        if($address->id > 0){
+            $this->setReturnMsg(0);
+            return $this->returnMsg;
+        }
+
+
+
+
 
 
 
