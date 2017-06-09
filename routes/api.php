@@ -58,6 +58,7 @@ Route::group(['middleware'=>'cors'],function (){
     //购物流程
 
     Route::post('/home/getstr','UserController@bindPhone');//用户绑定手机
+    Route::post('/area/areainfo','Home\AddressController@getAreaInfo');//三级地址列表所需数据
 
     //Route::post('home/getstr','Home\GoodsController@index');
 
