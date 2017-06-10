@@ -69,6 +69,14 @@ class Wechat{
         return $this->curlGet($url);
     }
 
+    //获取授权url，生成菜单时调用
+    public function get_authorize_url($redirect_uri, $scope='snsapi_base', $state = '123'){
+        $redirect_uri = urlencode($redirect_uri);
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->appid.'&redirect_uri=' . $redirect_uri . '&response_type=code&scope=' . $scope .
+            '&state=' . $state . '#wechat_redirect';
+        return $url;
+    }
+
     protected function curlPost($url,$data){
         $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
