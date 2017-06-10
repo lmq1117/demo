@@ -223,17 +223,30 @@ class WechatController extends CommonController
 
 
     //获取当前用户的openid
-    public function getOpenId(){
+    public function getOpenId(Request $request){
         //$openid = substr($this->session_key,10);
-        $openid = $this->session_key;
+        $req_data = $request->all();
+        $code = $req_data['code'];
+        //$code='031YS24e03DYTy1zLs4e0PQT3e0YS24K';
+        $wechatTools = new Wechat($this->config);
+        $res =  $wechatTools->getOpenId($code);
+
+
+
+        $openid = $res->openid;
         $this->returnMsg['data']['openid'] = $openid;
         $this->setReturnMsg(0);
         return $this->returnMsg;
     }
 
+    //获取菜单
     public function getMenu(){
         $wechatTools = new Wechat($this->config);
         return $wechatTools->getMenu();
     }
+
+
+
+
 
 }

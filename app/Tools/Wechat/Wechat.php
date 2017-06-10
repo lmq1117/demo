@@ -57,8 +57,15 @@ class Wechat{
         return $this->curlGet($url);
     }
 
+    //获取菜单
     public function getMenu(){
         $url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=".$this->getAccessToken();
+        return $this->curlGet($url);
+    }
+
+    //根据code获取openid
+    public function getOpenId($code){
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$this->appid."&secret=".$this->appSecret."&code=".$code."&grant_type=authorization_code";
         return $this->curlGet($url);
     }
 
