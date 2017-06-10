@@ -232,8 +232,8 @@ class WechatController extends CommonController
         $res =  $wechatTools->getOpenId($code);
 
 
-        var_dump($res);exit;
-        $openid = $res->openid;
+        //var_dump($res);exit;
+        $openid = $res['openid'];
         $this->returnMsg['data']['openid'] = $openid;
         $this->setReturnMsg(0);
         return $this->returnMsg;
