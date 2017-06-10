@@ -192,7 +192,7 @@ class WechatController extends CommonController
                            {    
                                "type":"view",
                                "name":"微商城",
-                               "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx858b762dc6af6249&redirect_uri=http%3A%2F%2Fwshop.lmqde.com%2Ftest.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+                               "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx858b762dc6af6249&redirect_uri=http%3A%2F%2Fwshop.lmqde.com%2Findex.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
                             },
                             {
                                "type":"view",
