@@ -57,6 +57,11 @@ class Wechat{
         return $this->curlGet($url);
     }
 
+    public function getMenu(){
+        $url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=".$this->getAccessToken();
+        return $this->curlGet($url);
+    }
+
     protected function curlPost($url,$data){
         $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);

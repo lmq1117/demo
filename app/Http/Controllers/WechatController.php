@@ -231,4 +231,9 @@ class WechatController extends CommonController
         return $this->returnMsg;
     }
 
+    public function getMenu(){
+        $wechatTools = new Wechat($this->config);
+        return $wechatTools->getMenu();
+    }
+
 }

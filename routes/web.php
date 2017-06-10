@@ -36,6 +36,8 @@ Route::get('/makemenu','WechatController@createMemu');
 //验证微信URL时才开，不验证不开
 //Route::any('/wechat','WechatController@verifyUrl');
 Route::any('/wechat','WechatController@index');
+//获取菜单
+Route::get('/wechat/getmenu','WechatController@getMenu');
 
 // sakya
 Route::any('/visitor/getfrom','Api\VisitorController@getFrom');
