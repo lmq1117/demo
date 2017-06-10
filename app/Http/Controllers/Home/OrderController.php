@@ -49,9 +49,12 @@ class OrderController extends WechatController
     //从购物车提交商品选中商品，生成订单
     public function makeOrder(Request $request){
         $req_data = $request->all();
-        $u_id = $req_data['u_id'];
-        $g_id_str = $req_data['g_ids'];
-        $g_ids = explode(',',$req_data['g_ids']);
+
+        $username = $req_data['username'];
+        $user = User::findForId($username);
+        $u_id = $user->id;
+        $g_id_str = trim($req_data['g_ids'],',');//以逗号分隔的gid字符串，跟
+        $g_ids = explode(',',$g_id_str);
         $session = json_decode($this->session->get($this->session_key),true);
 
         //生成订单号
@@ -94,8 +97,8 @@ class OrderController extends WechatController
                 $order_info->num = $val['cart_num'];
                 $order_info->price = $val['goods_price'];
                 $order_info->goods_name = $val['goods_name'];
-                $orderInfo->save();
-                if($orderInfo->id){
+                $order_info->save();
+                if($order_info->id){//插入成功
                     //取 改 存
                     $session = json_decode($this->session->get($this->session_key),true);
                     unset($session['shopping_cart'][$key]);//从购物车中删除该商品
