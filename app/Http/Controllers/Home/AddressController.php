@@ -92,7 +92,7 @@ class AddressController extends WechatController
         $u_id = $user->id;
 
         //查询区域表
-        $areas_obj = Areas::get();
+        $areas_obj = Areas::all();
         $areas = [];
         foreach ($areas_obj as $val){
             $areas[$val->id]=$val->area_name;
