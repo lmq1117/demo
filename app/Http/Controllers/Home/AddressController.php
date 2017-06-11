@@ -92,25 +92,29 @@ class AddressController extends WechatController
         $u_id = $user->id;
 
         //查询区域表
-        $areas_obj = Areas::all();
-        //var_dump($areas_obj);
-        $areas = [];
-        foreach ($areas_obj as $val){
-            var_dump($val);
-            $areas[$val->id]=$val->area_name;
-        }
-        var_dump($areas);
+        //$areas_obj = Areas::all();
+        ////var_dump($areas_obj);
+        //$areas = [];
+        //foreach ($areas_obj as $val){
+        //    var_dump($val);
+        //    $areas[$val->id]=$val->area_name;
+        //}
+        //var_dump($areas);
 
 
         //查询当前用户的默认地址
         $default_address = Address::where('u_id',$u_id)->where('is_default',1)->first();
-        $path = trim($default_address['path'],',');
-        $pathArr = explode(',',$path);
-        $path_val = '';
-        foreach($pathArr as $value){
-            $path_val .= $areas[$value];
-        }
-        $default_address['path'] = $path_val;
+        //$path = trim($default_address['path'],',');
+        //$pathArr = explode(',',$path);
+        //$path_val = '';
+        //foreach($pathArr as $value){
+        //    $path_val .= $areas[$value];
+        //}
+        //$default_address['path'] = $path_val;
+
+        //$default_address->path = Areas::getAddressStr($default_address->path);
+        $res = Areas::getAddressStr($default_address->path);
+        var_dump($res);
 
 
         //查询当前用户的其它地址
