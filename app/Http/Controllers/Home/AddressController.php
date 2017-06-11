@@ -96,6 +96,7 @@ class AddressController extends WechatController
         //var_dump($areas_obj);
         $areas = [];
         foreach ($areas_obj as $val){
+            var_dump($val);
             $areas[$val->id]=$val->area_name;
         }
         var_dump($areas);
