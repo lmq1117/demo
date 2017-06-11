@@ -48,6 +48,12 @@ Route::group(['middleware'=>'cors'],function (){
     Route::post('/wechat/useropenid','WechatController@getOpenId');
     Route::post('/wechat/userinfo','WechatController@getUserInfo');
     Route::post('/user/addaddress','Home\AddressController@addAddress');//用户增加地址
+    Route::post('/user/addresslist','Home\AddressController@addressList');//用户地址列表
+
+    //-------------------
+    //
+    Route::post('/shoppingcart/commit','Home\OrderController@makeOrder');//从购物车中提交选定商品生成订单
+
     Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
 
     //以下

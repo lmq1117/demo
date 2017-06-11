@@ -81,16 +81,54 @@ class AddressController extends WechatController
             $this->setReturnMsg(0);
             return $this->returnMsg;
         }
+    }
 
 
+    //当前用户下的地址列表
+    public function addressList(Request $request){
+        $req_data = $request->all();
+        $appid = $req_data['username'];
+        $user = User::findForId($appid);
+        $u_id = $user->id;
+
+        //查询区域表
+        $areas_obj = Areas::get();
+        $areas = [];
+        foreach ($areas_obj as $val){
+            $areas[$val->id]=$val->area_name;
+        }
 
 
+        //查询当前用户的默认地址
+        $default_address = Address::where('u_id',$u_id)->where('is_default',1)->first();
+        $path = trim($default_address['path'],',');
+        $pathArr = explode(',',$path);
+        $path_val = '';
+        foreach($pathArr as $value){
+            $path_val .= $areas[$value];
+        }
+        $default_address['path'] = $path_val;
 
 
+        //查询当前用户的其它地址
+        $other_address_list = Address::where('u_id',$u_id)->where('is_default',0)->get();
 
+        foreach($other_address_list as &$value){
+            //foreach ($value as $val){
+                $path = trim($value['path'],',');
+                $pathArr = explode(',',$path);
+                $path_val = '';
+                foreach ($pathArr as $v){
+                    $path_val .= $areas[$v];
+                }
+                $value['path'] = $path_val;
+            //}
+        }
 
-
-
+        $this->returnMsg['data']['default_address'] = $default_address;
+        $this->returnMsg['data']['other_address'] = $other_address_list;
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
     }
 
 
