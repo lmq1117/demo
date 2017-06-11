@@ -13,7 +13,7 @@ class Areas extends Model
 
     public static function getAddressStr($path){
         $pathArr = explode(',',trim($path,','));
-        $pathStrObj =  self::whereIn('id',$pathArr)->get();
+        $pathStrObj =  self::whereIn('area_id',$pathArr)->get();
         return $pathStrObj;
     }
 }
