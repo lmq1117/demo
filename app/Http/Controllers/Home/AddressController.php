@@ -114,7 +114,7 @@ class AddressController extends WechatController
 
         $default_address->path = Areas::getAddressStr($default_address->path);
         //$res = Areas::getAddressStr($default_address->path);
-        var_dump($default_address);exit;
+        //var_dump($default_address);exit;
 
 
         //查询当前用户的其它地址
@@ -122,14 +122,15 @@ class AddressController extends WechatController
 
         foreach($other_address_list as &$value){
             //foreach ($value as $val){
-                $path = trim($value['path'],',');
-                $pathArr = explode(',',$path);
-                $path_val = '';
-                foreach ($pathArr as $v){
-                    $path_val .= $areas[$v];
-                }
-                $value['path'] = $path_val;
+            //    $path = trim($value['path'],',');
+            //    $pathArr = explode(',',$path);
+            //    $path_val = '';
+            //    foreach ($pathArr as $v){
+            //        $path_val .= $areas[$v];
+            //    }
+            //    $value['path'] = $path_val;
             //}
+            $value->path = Areas::getAddressStr($value->path);
         }
 
         $this->returnMsg['data']['default_address'] = $default_address;
