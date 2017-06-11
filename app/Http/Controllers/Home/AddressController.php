@@ -97,6 +97,7 @@ class AddressController extends WechatController
         foreach ($areas_obj as $val){
             $areas[$val->id]=$val->area_name;
         }
+        var_dump($areas);
 
 
         //查询当前用户的默认地址
