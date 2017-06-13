@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home;
+use App\Entity\Home\GoodsEstimate;
 use App\Http\Controllers\CommonController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -183,9 +184,15 @@ class GoodsController extends CommonController
     //商品评价
     public function goodsEstimate(Request $request){
         $req_data = $request->all();
-        $order_no = $req_data['order_no'];
-        $g_id = $order_no['g_id'];
-        //该订单该商品是否已经评价过 || 过了15天 不给评论了
+        $o_id = $req_data['o_id'];
+        $g_id = $req_data['g_id'];
+        //该订单该商品是否已经评价过,评价过就不给评论
+        $res = GoodsEstimate::where('o_id',$o_id)->where('g_id',$g_id)->first();
+        if($res){
+            $this->setReturnMsg();
+            return $this->returnMsg;
+        }
+
 
 
     }
