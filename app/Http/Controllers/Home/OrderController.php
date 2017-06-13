@@ -118,6 +118,18 @@ class OrderController extends WechatController
         return $this->returnMsg;
     }
 
+    //订单查询 根据订单号获取订单详细信息
+    public function orderQuery(Request $request){
+        $req_data = $request->all();
+        $order_no = $req_data['order_no'];
+        $order = Order::queryOrder($order_no);
+        //var_dump($order);
+
+        $this->returnMsg['data'] = $order;
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
+    }
+
 
     //订单结算页
     public function getPayPage (Request $request){

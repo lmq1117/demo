@@ -16,4 +16,15 @@ class Order extends Model
     public static function getOrderStatusCount($user_id,$type){
         return self::where('status',$type)->where('u_id',$user_id)->count();
     }
+
+    //根据订单号查询出订单所有信息
+    public static function queryOrder($order_no){
+        $order = self::where('order_no',$order_no)->first();
+        $order->orderInfo = OrderInfo::where('o_id',$order->id)->get();
+        $address = Address::find($order->address_id);
+        $address->pathStr = Areas::getAddressStr($address->path);
+        //var_dump($order_info);exit;
+        $order->address = $address;
+        return $order;
+    }
 }
