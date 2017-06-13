@@ -58,6 +58,9 @@ Route::group(['middleware'=>'cors'],function (){
     //从购物车生成订单
     Route::post('/shoppingflow/createorder','Home\OrderController@makeOrder');
 
+    //从订单号获取订单详情
+    Route::post('/order/query','Home\OrderController@orderQuery');
+
     //以下
     //Route::post('/order/before_pay','Home\OrderController@getGoodsDetail');//待付款
     //Route::post('/order/before_shipping','Home\GoodsController@getGoodsDetail');//待发货

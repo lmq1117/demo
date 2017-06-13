@@ -163,7 +163,6 @@ class GoodsController extends CommonController
     //获取当前用户收藏的所有商品信息（用于商品列表）
     public function goodsCollectionList(Request $request){
         $req_data = $request->all();
-
         $user = User::findForId($req_data['username']);
         $collection = GoodsCollection::where('u_id',$user->id)->where('is_cancel',0)->get();
 
@@ -179,5 +178,19 @@ class GoodsController extends CommonController
 
     public function getstr2(){
         return ['name'=>'lili','age'=>17,'sex'=>0];
+    }
+
+    //商品评价
+    public function goodsEstimate(Request $request){
+        $req_data = $request->all();
+        $order_no = $req_data['order_no'];
+        $g_id = $order_no['g_id'];
+        //该订单该商品是否已经评价过 || 过了15天 不给评论了
+
+
+    }
+    //获取商品评价
+    public function getGoodsEstimate(Request $request){
+
     }
 }
