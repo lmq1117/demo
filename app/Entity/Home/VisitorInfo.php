@@ -38,6 +38,7 @@ CREATE TABLE `visitor_info` (
   `note` varchar(500) DEFAULT '' COMMENT '需求说明',
   `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '新增时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `is_del` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否已删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='访客登记表';
 EEE;
