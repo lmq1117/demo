@@ -55,6 +55,7 @@ class OrderController extends WechatController
         $u_id = $user->id;
         $g_id_str = trim($req_data['g_ids'],',');//以逗号分隔的gid字符串，跟
         $g_ids = explode(',',$g_id_str);
+        var_dump($g_ids);exit;
         $session = json_decode($this->session->get($this->session_key),true);
 
         //生成订单号
