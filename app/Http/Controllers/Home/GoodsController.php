@@ -61,9 +61,11 @@ class GoodsController extends CommonController
 
 
         //测试阿里大于短信发送方法
-        $smsResult = $this->sendSms('18129931017');
-        Log::info('短信发送结果goods----'.json_encode($smsResult));
-        return $smsResult;
+        //$smsResult = $this->sendSms('18129931017');
+        //Log::info('短信发送结果goods----'.json_encode($smsResult));
+        //return $smsResult;
+        $session = json_decode($this->session->get('sessionid_outktv28lv2UjvPTeT1TvKRRx0tc'));
+        dd($session);
     }
 
     public function sessionTest(Request $request){

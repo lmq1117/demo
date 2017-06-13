@@ -55,6 +55,8 @@ Route::group(['middleware'=>'cors'],function (){
     Route::post('/shoppingcart/commit','Home\OrderController@makeOrder');//从购物车中提交选定商品生成订单
 
     Route::post('/user/bind','UserController@bindPhone');//用户绑定手机
+    //从购物车生成订单
+    Route::post('/shoppingflow/createorder','Home\OrderController@makeOrder');
 
     //以下
     //Route::post('/order/before_pay','Home\OrderController@getGoodsDetail');//待付款
