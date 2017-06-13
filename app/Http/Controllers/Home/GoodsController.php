@@ -189,9 +189,10 @@ class GoodsController extends CommonController
         //该订单该商品是否已经评价过,评价过就不给评论
         $res = GoodsEstimate::where('o_id',$o_id)->where('g_id',$g_id)->first();
         if($res){
-            $this->setReturnMsg();
+            $this->setReturnMsg(5);
             return $this->returnMsg;
         }
+
 
 
 

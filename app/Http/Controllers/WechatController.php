@@ -155,6 +155,7 @@ class WechatController extends CommonController
         $wshop_url = "http://wshop.lmqde.com/index.html";
 
         $menu_wshop_url = $wobj->get_authorize_url($wshop_url);
+        return $menu_wshop_url;
 
         $menu = '{
                      "button":[
