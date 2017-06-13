@@ -17,8 +17,13 @@ class CommonController extends ApiController
     protected $session_key;
 
     protected $config = [
-        'appid'=>'wx858b762dc6af6249',
-        'appSecret'=>'1ab68b48c760948ee041173508c3fcfc'
+        //测试服务号
+        //'appid'=>'wx858b762dc6af6249',
+        //'appSecret'=>'1ab68b48c760948ee041173508c3fcfc'
+
+        //服务号
+        'appid'=>'wx792ffa17436005f9',
+        'appSecret'=>'230b2f56435cc8191d74e86350f7d258'
     ];
 
     public function __construct()
