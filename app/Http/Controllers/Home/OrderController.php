@@ -65,7 +65,7 @@ class OrderController extends WechatController
         $order_goods_total_num = 0;
         $orderInfo = [];
         foreach ($g_ids as $g_id => $val){
-            $shopping_cart_goods_info = $session['shopping_cart'][$val];
+            $shopping_cart_goods_info = $session['shopping_cart'][$g_id];
             $goods = Goods::find($val);
             $shopping_cart_goods_info['goods_price'] = $goods->goods_price;
             $order_amount = $order_amount + $shopping_cart_goods_info['cart_num'] * $goods->goods_price;
