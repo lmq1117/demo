@@ -22,7 +22,7 @@ class Order extends Model
         $order = self::where('order_no',$order_no)->first();
         $order->orderInfo = OrderInfo::where('o_id',$order->id)->get();
         $address = Address::find($order->address_id);
-        $address->pathStr = Areas::getAddressStr($address->path);
+        $address->pathstr = Areas::getAddressStr($address->path);
         //var_dump($order_info);exit;
         $order->address = $address;
         return $order;
