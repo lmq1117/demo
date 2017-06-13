@@ -47,6 +47,66 @@ class VisitorController extends SakyaController{
         }
     }
     
+    // 获取列表
+    public function getList(Request $request) {
+        $current_page = $request->input('current_page');
+        $page_num = $request->input('page_num');
+        
+        $data  = VisitorInfo::getList($current_page , $page_num);
+        $count = VisitorInfo::getCount();
+        
+        return $this->returnData(['data'=>$data,'count'=>$count]);
+    }
+    
+    // 获取单个
+    public function getOne(Request $request){
+        $id = $request->input('id');
+        return VisitorInfo::getOne($id);
+    }
+    
+    // 修改单个
+    public function updateOne(Request $request){
+        $this->validate($request, [
+            'visitor.id' => 'required|integer',
+            'visitor.name' => 'required|min:2|max:50',
+            'visitor.phone' => 'required|min:2|max:20',
+            'visitor.scene' => 'required|integer',
+            'visitor.note' => 'max:500',
+        ],[
+            'required' => ':attribute为必填项!',
+            'min' => ':attribute长度不符合要求!',
+            'max' => ':attribute长度过长!',
+            'integer' => ':attribute必须为整数!',
+        ],[
+            'visitor.id' => '主键',
+            'visitor.name' => '姓名',
+            'visitor.phone' => '联系电话',
+            'visitor.scene' => '接入场景',
+            'visitor.note' => '需求备注',
+        ]);
+        $data = $request->input('visitor');
+        $short_code = $request->input('short_code');
+        if(!$this->verifyPhoneCode( $short_code , $data['phone'])) return $this->returnMsg( 0 ,'短信验证码有误!');
+        try{
+            if(VisitorInfo::updateById($data)){
+                return $this->returnMsg(1);
+            }
+        } catch (QueryException $ex) {
+            return $this->returnMsg(0);
+        }
+    }
+    
+    // 删除单个
+    public function delOne(Request $request){
+        try{
+            if(VisitorInfo::delById($request->input('id'))){
+                return $this->returnMsg(1);
+            }
+        } catch (QueryException $ex) {
+            return $this->returnMsg(0);
+        }
+    }
+    
     // 发送短信验证码
     public function sendCode(Request $request){
         $this->validate($request, [
