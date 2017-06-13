@@ -66,7 +66,7 @@ class OrderController extends WechatController
         $order_goods_total_num = 0;
         $orderInfo = [];
         foreach ($g_ids as $g_id => $val){
-            var_dump($session);
+            //var_dump($session);
             $shopping_cart_goods_info = $session['shopping_cart'][$g_id];
             var_dump($shopping_cart_goods_info);exit;
             $goods = Goods::find($g_id);
