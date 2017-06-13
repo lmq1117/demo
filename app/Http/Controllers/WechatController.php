@@ -243,6 +243,10 @@ class WechatController extends CommonController
 
         //var_dump($res);exit;
         $openid = $res['openid'];
+        $userInfo = $wechatTools->getWxUserInfo($openid);
+        Log::info(date('Y-m-d H:i:s',time()).'-----$userinfo获取openid时写入数据库---------------'.json_encode($userInfo));
+        $user = new User();
+
         $this->returnMsg['data']['openid'] = $openid;
         $this->setReturnMsg(0);
         return $this->returnMsg;
