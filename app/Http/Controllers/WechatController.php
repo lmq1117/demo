@@ -234,9 +234,11 @@ class WechatController extends CommonController
         //$openid = substr($this->session_key,10);
         $req_data = $request->all();
         $code = $req_data['code'];
+        Log::info(date('Y-m-d H:i:s',time()).'-----$code---------------'.$code);
         //$code='031YS24e03DYTy1zLs4e0PQT3e0YS24K';
         $wechatTools = new Wechat($this->config);
         $res =  $wechatTools->getOpenId($code);
+        Log::info(date('Y-m-d H:i:s',time()).'-----$res---------------'.json_encode($res));
 
 
         //var_dump($res);exit;
