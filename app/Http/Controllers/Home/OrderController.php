@@ -7,6 +7,7 @@ use App\Http\Controllers\WechatController;
 use Illuminate\Http\Request;
 use App\User;
 use App\Entity\Home\Order;
+use App\Entity\Home\OrderInfo;
 
 class OrderController extends WechatController
 {
@@ -53,6 +54,7 @@ class OrderController extends WechatController
         $username = $req_data['username'];
         $user = User::findForId($username);
         $u_id = $user->id;
+        $address_id = $req_data['address_id'];
         $g_id_str = trim($req_data['g_ids'],',');//以逗号分隔的gid字符串，跟
         $g_ids = explode(',',$g_id_str);
         $session = json_decode($this->session->get('sessionid_'.$username),true);
@@ -65,19 +67,20 @@ class OrderController extends WechatController
         $order_amount = 0;
         $order_goods_total_num = 0;
         $orderInfo = [];
-        foreach ($g_ids as $g_id => $val){
+        foreach ($g_ids as $val){
             //var_dump($session);
-            $shopping_cart_goods_info = $session['shopping_cart'][$g_id];
-            var_dump($shopping_cart_goods_info);exit;
-            $goods = Goods::find($g_id);
+            $shopping_cart_goods_info = $session['shopping_cart'][$val];
+            //var_dump($shopping_cart_goods_info);exit;
+            $goods = Goods::find($val);
             $shopping_cart_goods_info['goods_price'] = $goods->goods_price;
             $order_amount = $order_amount + $shopping_cart_goods_info['cart_num'] * $goods->goods_price;
             $order_goods_total_num++;
-            $orderInfo[$g_id] = $shopping_cart_goods_info;
+            $orderInfo[$val] = $shopping_cart_goods_info;
 
         }
         //将订单信息写入订单表
         $order = new Order;
+        $order->address_id = $address_id;
         $order->order_no = $order_no;
         $order->order_desc = '';
         $order->remark = '';
@@ -95,7 +98,7 @@ class OrderController extends WechatController
         if($order->id){
             foreach ($orderInfo as $key => $val){
                 $order_info = new OrderInfo;
-                $order_info->u_id = $u_id;
+                $order_info->o_id = $order->id;
                 $order_info->g_id = $key;
                 $order_info->num = $val['cart_num'];
                 $order_info->price = $val['goods_price'];
@@ -103,9 +106,9 @@ class OrderController extends WechatController
                 $order_info->save();
                 if($order_info->id){//插入成功
                     //取 改 存
-                    $session = json_decode($this->session->get($this->session_key),true);
+                    $session = json_decode($this->session->get('sessionid_'.$username),true);
                     unset($session['shopping_cart'][$key]);//从购物车中删除该商品
-                    $this->session->set($this->session_key,json_encode($session));
+                    $this->session->set('sessionid_'.$username,json_encode($session));
                 }
 
             }
