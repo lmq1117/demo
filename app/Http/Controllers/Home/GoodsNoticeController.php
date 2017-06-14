@@ -46,9 +46,9 @@ class GoodsNoticeController extends WechatController
         $g_id = $req_data['g_id'];
         $appid = $req_data['username'];
         $user = User::findForId($appid);
-        $goods_collection = GoodsNotice::where('u_id',$user->id)->where('g_id',$g_id)->first();
-        $goods_collection->is_cancel = 1;
-        $goods_collection->save();
+        $goods_notice = GoodsNotice::where('u_id',$user->id)->where('g_id',$g_id)->first();
+        $goods_notice->is_cancel = 1;
+        $goods_notice->save();
         $this->setReturnMsg(0);
         return $this->returnMsg;
     }
