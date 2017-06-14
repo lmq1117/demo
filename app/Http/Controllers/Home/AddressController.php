@@ -112,7 +112,9 @@ class AddressController extends WechatController
         //}
         //$default_address['path'] = $path_val;
 
-        $default_address->pathstr = Areas::getAddressStr($default_address->path);
+        if(!is_null($default_address)){
+            $default_address->pathstr = Areas::getAddressStr($default_address->path);
+        }
         //$res = Areas::getAddressStr($default_address->path);
         //var_dump($default_address);exit;
 
@@ -120,21 +122,29 @@ class AddressController extends WechatController
         //查询当前用户的其它地址
         $other_address_list = Address::where('u_id',$u_id)->where('is_default',0)->get();
 
-        foreach($other_address_list as &$value){
-            //foreach ($value as $val){
-            //    $path = trim($value['path'],',');
-            //    $pathArr = explode(',',$path);
-            //    $path_val = '';
-            //    foreach ($pathArr as $v){
-            //        $path_val .= $areas[$v];
-            //    }
-            //    $value['path'] = $path_val;
-            //}
-            $value->pathstr = Areas::getAddressStr($value->path);
+        if(!is_null($other_address_list)){
+            foreach($other_address_list as &$value){
+                //foreach ($value as $val){
+                //    $path = trim($value['path'],',');
+                //    $pathArr = explode(',',$path);
+                //    $path_val = '';
+                //    foreach ($pathArr as $v){
+                //        $path_val .= $areas[$v];
+                //    }
+                //    $value['path'] = $path_val;
+                //}
+                $value->pathstr = Areas::getAddressStr($value->path);
+            }
         }
 
-        $this->returnMsg['data']['default_address'] = $default_address;
-        $this->returnMsg['data']['other_address'] = $other_address_list;
+        if(!is_null($other_address_list) || !is_null($default_address)){
+            $this->returnMsg['data']['default_address'] = $default_address;
+            $this->returnMsg['data']['other_address'] = $other_address_list;
+        } else {
+            $this->returnMsg['data']['default_address'] = [];
+            $this->returnMsg['data']['other_address'] = [];
+        }
+
         $this->setReturnMsg(0);
         return $this->returnMsg;
     }
