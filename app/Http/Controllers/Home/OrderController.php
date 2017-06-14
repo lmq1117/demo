@@ -42,6 +42,10 @@ class OrderController extends WechatController
         } else {
             $orderList =  Order::where('u_id',$user->id)->where('status',$type)->where('status','!=',7)->orderBy('created_at')->get();
         }
+        if(!$orderList){
+            $this->setReturnMsg(7);
+            return $this->returnMsg;
+        }
         //foreach($orderList as &$val){
         //    $goodsinfo = Goods::find($val->g_id);
         //    $val->goodsInfo = $goodsinfo;
