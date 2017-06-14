@@ -247,9 +247,9 @@ class WechatController extends CommonController
         $user = User::where('wx_openid',$openid)->first();
         if(!$user){ //没查到，插入一条新的
             $newuser = new User();
-            $newuser->name = $res['nickname'];
-            $newuser->wx_openid = $res['openid'];
-            $newuser->wx_headimgurl = $res['headimgurl'];
+            $newuser->name = $userInfo['nickname'];
+            $newuser->wx_openid = $userInfo['openid'];
+            $newuser->wx_headimgurl = $userInfo['headimgurl'];
             $newuser->save();
         }
         $userInfoForSession = User::where('wx_openid',$openid)->first();
