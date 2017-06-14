@@ -42,9 +42,9 @@ class OrderController extends WechatController
         } else {
             $orderList =  Order::where('u_id',$user->id)->where('status',$type)->where('status','!=',7)->orderBy('created_at')->get();
         }
-        if(!$orderList){
+        if($orderList->isEmpty()){
             $this->returnMsg['data']['all_order_list'] = [];
-            $this->setReturnMsg(7);
+            $this->setReturnMsg(0);
             return $this->returnMsg;
         }
         //foreach($orderList as &$val){
