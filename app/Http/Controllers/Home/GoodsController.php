@@ -65,7 +65,7 @@ class GoodsController extends CommonController
         //$smsResult = $this->sendSms('18129931017');
         //Log::info('短信发送结果goods----'.json_encode($smsResult));
         //return $smsResult;
-        $session = json_decode($this->session->get('sessionid_outktv28lv2UjvPTeT1TvKRRx0tc'));
+        $session = json_decode($this->session->get('sessionid_opSdF1XAenS-5lhSBq7GIC45pKSc'));
         dd($session);
     }
 
