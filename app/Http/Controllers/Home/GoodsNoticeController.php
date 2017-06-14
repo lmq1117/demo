@@ -39,4 +39,18 @@ class GoodsNoticeController extends WechatController
 
     }
 
+
+    //取消关注商品
+    public function goodsNoticeCancel(Request $request){
+        $req_data = $request->all();
+        $g_id = $req_data['g_id'];
+        $appid = $req_data['username'];
+        $user = User::findForId($appid);
+        $goods_collection = GoodsNotice::where('u_id',$user->id)->where('g_id',$g_id)->first();
+        $goods_collection->is_cancel = 1;
+        $goods_collection->save();
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
+    }
+
 }

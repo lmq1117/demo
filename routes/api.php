@@ -33,6 +33,8 @@ Route::group(['middleware'=>'cors'],function (){
     Route::post('/goods/goodsinfo','Home\GoodsController@getGoodsDetail');
     Route::post('/goods/notice','Home\GoodsNoticeController@goodsNoticeAdd');//添加关注商品
     Route::post('/goods/collection','Home\GoodsCollectionController@goodsCollectionAdd');//添加收藏商品
+    Route::post('/goods/notice/cancel','Home\GoodsNoticeController@goodsNoticeCancel');//取消关注商品
+    Route::post('/goods/collection/cancel','Home\GoodsCollectionController@goodsCollectionCancel');//取消收藏商品
     Route::post('/user/notice','Home\GoodsController@goodsNoticeList');//当前用户关注的商品列表
     Route::post('/user/collection','Home\GoodsController@goodsCollectionList');//当前用户收藏的商品列表
     Route::post('/order/all','Home\OrderController@getAllOrderList');//全部订单

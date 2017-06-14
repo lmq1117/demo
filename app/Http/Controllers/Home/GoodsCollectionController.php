@@ -16,18 +16,10 @@ class GoodsCollectionController extends WechatController
         $goods_collection = new GoodsCollection();
         $goods_collection->g_id = $data['g_id'];
 
-        //$user_info = Auth::user();
-        //$goods_collection->u_id = $user_info->id;
-
-        //$user = new User();
         $user_name = $data['username'];
-        //$user->name = $user_name;
-        //$user->find;
+
         $user = User::where('wx_openid',$user_name)->first();
-        //return $user;
 
-
-        //$goods_collection->g_id = $data['g_id'];
         $goods_collection->u_id = $user->id;
         if($check_duplicate = GoodsCollection::where('u_id',$goods_collection->u_id)->where('g_id',$goods_collection->g_id)->first()){
             //关注失败
@@ -48,5 +40,19 @@ class GoodsCollectionController extends WechatController
         }
         return $this->returnMsg;
 
+    }
+
+
+    //取消收藏商品
+    public function goodsCollectionCancel(Request $request){
+        $req_data = $request->all();
+        $g_id = $req_data['g_id'];
+        $appid = $req_data['username'];
+        $user = User::findForId($appid);
+        $goods_collection = GoodsCollection::where('u_id',$user->id)->where('g_id',$g_id)->first();
+        $goods_collection->is_cancel = 1;
+        $goods_collection->save();
+        $this->setReturnMsg(0);
+        return $this->returnMsg;
     }
 }
