@@ -241,11 +241,21 @@ class WechatController extends CommonController
         Log::info(date('Y-m-d H:i:s',time()).'-----$res---------------'.json_encode($res));
 
 
-        //var_dump($res);exit;
         $openid = $res['openid'];
         $userInfo = $wechatTools->getWxUserInfo($openid);
         Log::info(date('Y-m-d H:i:s',time()).'-----$userinfo获取openid时写入数据库---------------'.json_encode($userInfo));
-        $user = new User();
+        $user = User::where('wx_openid',$openid)->first();
+        if(!$user){ //没查到，插入一条新的
+            $newuser = new User();
+            $newuser->name = $res['nickname'];
+            $newuser->wx_openid = $res['openid'];
+            $newuser->wx_headimgurl = $res['headimgurl'];
+            $newuser->save();
+        }
+        $userInfoForSession = User::where('wx_openid',$openid)->first();
+        $session = [];
+        $session['userInfo'] = $userInfoForSession;
+        $this->session->set('sessionid_'.$openid,json_encode($session));
 
         $this->returnMsg['data']['openid'] = $openid;
         $this->setReturnMsg(0);
