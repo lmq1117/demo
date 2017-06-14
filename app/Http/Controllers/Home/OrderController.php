@@ -43,6 +43,7 @@ class OrderController extends WechatController
             $orderList =  Order::where('u_id',$user->id)->where('status',$type)->where('status','!=',7)->orderBy('created_at')->get();
         }
         if(!$orderList){
+            $this->returnMsg['data']['all_order_list'] = [];
             $this->setReturnMsg(7);
             return $this->returnMsg;
         }
