@@ -15,7 +15,8 @@ class ApiController extends Controller
         2 => '关注商品失败！',
         3 => '同一商品不能重复关注！',
         4 => '同一商品不能重复收藏！',
-        5 => '你已经评论过该商品！'
+        5 => '你已经评论过该商品！',
+        6 => '已付款订单不能取消！',
     ];
 
     protected function setReturnMsg($code=0){

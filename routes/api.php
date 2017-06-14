@@ -40,7 +40,7 @@ Route::group(['middleware'=>'cors'],function (){
     Route::post('/user/usercenter','Home\UserController@getUserInfo');//会员中心 会员信息
 
     //status
-    //订单状态 0待付款，1已付款待发货，2已付款已发货，3已付款已收货，4客户申请退款，5客户申请退款并被审核，6退款完成
+    //订单状态 0待付款，1已付款待发货，2已付款已发货，3已付款已收货，4客户申请退款，5客户申请退款并被审核，6退款完成 7未付款已取消
     Route::post('/order/status/orderlist','Home\OrderController@getStatusOrderList');//post传不同的type区分不同状态的订单
 
     //

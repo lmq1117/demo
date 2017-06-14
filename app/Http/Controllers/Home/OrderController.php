@@ -38,9 +38,9 @@ class OrderController extends WechatController
         $type = $req_data['status'] != '*' ? $req_data['status'] : '';
 
         if($type == ''){
-            $orderList =  Order::where('u_id',$user->id)->orderBy('created_at')->get();
+            $orderList =  Order::where('u_id',$user->id)->where('status','!=',7)->orderBy('created_at')->get();
         } else {
-            $orderList =  Order::where('u_id',$user->id)->where('status',$type)->orderBy('created_at')->get();
+            $orderList =  Order::where('u_id',$user->id)->where('status',$type)->where('status','!=',7)->orderBy('created_at')->get();
         }
         //foreach($orderList as &$val){
         //    $goodsinfo = Goods::find($val->g_id);
@@ -196,6 +196,24 @@ class OrderController extends WechatController
         $this->returnMsg['data']['order_info'] = $order_info;
         $this->setReturnMsg(0);
         return $this->returnMsg;
+    }
+
+    //取消未付款订单
+    public function cancelOrder(Request $request){
+        $req_data = $request->all();
+        //$openid = $req_data['username'];
+        $order_no = $req_data['order_no'];
+        $order = Order::where('order_no',$order_no)->first();
+        if($order->status > 0){
+            $this->setReturnMsg(6);
+            return $this->returnMsg;
+        } else {
+            $order->status = 7;
+            $order->save();
+            $this->setReturnMsg(0);
+            return $this->returnMsg;
+        }
+
     }
 
 
