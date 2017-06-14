@@ -153,6 +153,10 @@ class GoodsController extends CommonController
 
         $user = User::findForId($req_data['username']);
         $notice = GoodsNotice::where('u_id',$user->id)->where('is_cancel',0)->get();
+        foreach ($notice as &$val){
+            $goods_info = Goods::find($val->g_id);
+            $val->goodsInfo = $goods_info;
+        }
         //return $notice;
         $this->returnMsg['data']['notice_list'] = $notice;
         $this->setReturnMsg(0);
@@ -166,6 +170,10 @@ class GoodsController extends CommonController
         $req_data = $request->all();
         $user = User::findForId($req_data['username']);
         $collection = GoodsCollection::where('u_id',$user->id)->where('is_cancel',0)->get();
+        foreach($collection as &$val){
+            $goods_info = Goods::find($val->g_id);
+            $val->goodsInfo = $goods_info;
+        }
 
         $this->returnMsg['data']['collection_list'] = $collection;
         $this->setReturnMsg(0);
