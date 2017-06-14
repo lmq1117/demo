@@ -258,7 +258,7 @@ class WechatController extends CommonController
         $this->session->set('sessionid_'.$openid,json_encode($session));
 
         $this->returnMsg['data']['openid'] = $openid;
-        $this->returnMsg['data']['userInfo'] = $openid;
+        $this->returnMsg['data']['userInfo'] = $userInfoForSession;
         $this->setReturnMsg(0);
         return $this->returnMsg;
     }
