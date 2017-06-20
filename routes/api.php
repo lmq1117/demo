@@ -78,6 +78,8 @@ Route::group(['middleware'=>'cors'],function (){
 
     //Route::post('home/getstr','Home\GoodsController@index');
 
+    Route::get('/wltest','Home\GoodsController@wltest');
+
 
 });
 

@@ -209,4 +209,9 @@ class GoodsController extends CommonController
     public function getGoodsEstimate(Request $request){
 
     }
+
+
+    public function wltest(Request $request){
+        return $request->toArray();
+    }
 }
